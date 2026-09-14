@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kelian Luye — Développeur full-stack</title>
+  <meta name="description" content="Portfolio de Kelian Luye, développeur full-stack en alternance BTS SIO SLAM à Paris. Réalisations, compétences et parcours.">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="stylesheet" href="css/style.css">
+  <script>
+    // Bloquant et minuscule à dessein : fixe le thème AVANT le premier
+    // rendu pour éviter un flash blanc/sombre au chargement. La logique
+    // de bascule (clic sur le bouton) vit dans js/main.js.
+    (function () {
+      var stored = localStorage.getItem("theme");
+      var prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+      document.documentElement.setAttribute("data-theme", stored || (prefersDark ? "dark" : "light"));
+    })();
+  </script>
+</head>
+<body>
+  <div class="ambient-bg" aria-hidden="true"></div>
+  <a href="#main-content" class="skip-link">Aller au contenu</a>
+
+  <header class="site-header">
+    <nav class="nav" aria-label="Navigation principale">
+      <a href="#main-content" class="nav__logo">Kelian&nbsp;Luye</a>
+
+      <button class="nav__toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="navMenu" aria-label="Ouvrir le menu de navigation">
+        <span class="nav__toggle-bar"></span>
+        <span class="nav__toggle-bar"></span>
+        <span class="nav__toggle-bar"></span>
+      </button>
+
+      <ul class="nav__menu" id="navMenu">
+        <li><a href="#about">Qui je suis</a></li>
+        <li><a href="#skills">Compétences</a></li>
+        <li><a href="#work">Réalisations</a></li>
+        <li><a href="#competences-bts">BTS&nbsp;SIO</a></li>
+        <li><a href="#veille">Veille</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+
+
+      <button class="theme-toggle" id="themeToggle" type="button" aria-label="Basculer entre thème clair et sombre">THÈME[S]</button>
+    </nav>
+  </header>
+
+  <main id="main-content">
+    <!-- ===== HERO ===== -->
+    <section id="hero" class="hero">
+      <div class="grid-overlay" aria-hidden="true">
+        <span class="grid-overlay__line grid-overlay__line--v" style="left: 33%"></span>
+        <span class="grid-overlay__line grid-overlay__line--v" style="left: 66%"></span>
+        <span class="grid-overlay__line grid-overlay__line--h" style="top: 32%"></span>
+        <span class="grid-overlay__line grid-overlay__line--h" style="top: 78%"></span>
+        <span class="grid-overlay__mark" style="left: 33%; top: 32%">+</span>
+        <span class="grid-overlay__mark" style="left: 66%; top: 32%">+</span>
+        <span class="grid-overlay__mark" style="left: 33%; top: 78%">+</span>
+        <span class="grid-overlay__mark" style="left: 66%; top: 78%">+</span>
+      </div>
+
+      <div class="stickers" aria-hidden="true">
+        <span class="sticker sticker--sass" style="top: 22%; left: 2%;">S</span>
+        <span class="sticker sticker--react" style="top: 43%; left: 20%;">⚛</span>
+        <span class="sticker sticker--js" style="top: 20%; left: 34%;">JS</span>
+        <span class="sticker sticker--py" style="top: 42%; left: 50%;">PY</span>
+        <span class="sticker sticker--next" style="top: 55%; left: 92%;">N</span>
+        <span class="sticker sticker--ts" style="top: 68%; left: 94%;">TS</span>
+        <span class="sticker sticker--css" style="top: 90%; left: 21%;">CSS3</span>
+      </div>
+
+      <div class="hero__top">
+        <p class="hero__tagline">Design &amp;<br>Développement</p>
+        <p class="hero__lead">Penser en systèmes.<br>Concevoir avec soin.</p>
+        <p class="hero__bio">Développeur full-stack en alternance BTS SIO (SLAM) à Paris. Je construis avec Next.js, React et Node, et j'intègre de plus en plus les agents IA et le protocole MCP dans ma façon de travailler.</p>
+      </div>
+
+      <h1 class="hero__headline">
+        <span>J'apporte</span>
+        <span>savoir-faire &amp; goût</span>
+        <span>au travail numérique</span>
+      </h1>
+
+      <div class="hero__bottombar">
+        <span id="liveClock"></span>
+        <span id="cursorCoords">0000 X 0000 Y</span>
+        <button type="button" id="scrollTopBtn" class="hero__scrolltop" aria-label="Remonter en haut">↑</button>
+      </div>
+    </section>
+
+    <!-- ===== QUI JE SUIS ===== -->
+    <section id="about" class="about">
+      <div class="grid-overlay" aria-hidden="true">
+        <span class="grid-overlay__line grid-overlay__line--v" style="left: 33%"></span>
+        <span class="grid-overlay__line grid-overlay__line--h" style="top: 50%"></span>
+      </div>
+      <div class="about__grid">
+        <div class="about__portrait-frame">
+          <img
+            src="assets/images/portrait.png"
+            alt="Portrait de Kelian Luye, développeur full-stack en alternance BTS SIO"
+            class="about__portrait"
+            width="480" height="480" loading="lazy">
+        </div>
+
+        <div class="about__text">
+          <h2 class="eyebrow">Qui je suis</h2>
+          <p class="lead">J'aime comprendre un système avant d'y toucher, construire d'abord la version la plus simple qui fonctionne — puis prendre le temps de la soigner.</p>
+          <p>Développeur full-stack en alternance BTS SIO (option SLAM) à Paris. Je construis avec Next.js, React et Node, et j'intègre de plus en plus les agents IA et le protocole MCP dans ma façon de travailler.</p>
+          <p>Je construis <strong>REV</strong>, un lecteur de musique desktop natif, et j'ai livré précédemment un site premium pour <strong>Glow&nbsp;Up&nbsp;by&nbsp;Julie</strong>, un institut de beauté parisien, pendant mon alternance BTS&nbsp;SIO à <strong>IPSSI</strong>.</p>
+
+          <h3>Parcours</h3>
+          <ol class="timeline">
+            <li><span class="timeline__period">2019 – 2022</span><span>Bac Pro Mécanique Générale — Lycée Jean Rostand, Mantes-la-Jolie</span></li>
+            <li><span class="timeline__period">2024 – 2025</span><span>BTS Systèmes Embarqués — GARAC (réorientation vers l'informatique)</span></li>
+            <li><span class="timeline__period">2025 – 2027</span><span>BTS SIO SLAM — IPSSI Paris (en cours, alternance une semaine sur deux)</span></li>
+          </ol>
+
+          <h3>Expérience professionnelle</h3>
+          <ol class="timeline">
+            <li><span class="timeline__period">Fév. – mai 2025</span><span>Concepteur technique — Projet Kart GARAC (pilotage, équipe, délais)</span></li>
+            <li><span class="timeline__period">Nov. – déc. 2025</span><span>Développeur front-end — Mission IPSSI (HTML/CSS responsive, Git en équipe)</span></li>
+            <li><span class="timeline__period">2025</span><span>Développeur full-stack freelance — site vitrine premium (Next.js, Three.js, GSAP)</span></li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== COMPÉTENCES ===== -->
+    <section id="skills" class="skills">
+      <div class="container">
+        <h2 class="eyebrow">Compétences</h2>
+        <ul class="skills__grid">
+          <li class="skill-card">
+            <div class="skill-card__head">
+              <h3>React&nbsp;/ Next.js</h3>
+              <span class="skill-dots" aria-hidden="true"><span class="is-filled"></span><span class="is-filled"></span><span class="is-filled"></span></span>
+            </div>
+            <p class="skill-card__level">Expert</p>
+            <p>React 19, Next.js 16 App Router, SSR, Server Components, Framer Motion, GSAP.</p>
+          </li>
+          <li class="skill-card">
+            <div class="skill-card__head">
+              <h3>JavaScript</h3>
+              <span class="skill-dots" aria-hidden="true"><span class="is-filled"></span><span class="is-filled"></span><span class="is-filled"></span></span>
+            </div>
+            <p class="skill-card__level">Expert — depuis 2022</p>
+            <p>ES2024, DOM, Web APIs, Canvas, Web Audio.</p>
+          </li>
+          <li class="skill-card">
+            <div class="skill-card__head">
+              <h3>HTML&nbsp;/ CSS</h3>
+              <span class="skill-dots" aria-hidden="true"><span class="is-filled"></span><span class="is-filled"></span><span></span></span>
+            </div>
+            <p class="skill-card__level">Confirmé</p>
+            <p>Tailwind CSS, SCSS, Flexbox, Grid, animations natives, responsive design.</p>
+          </li>
+          <li class="skill-card">
+            <div class="skill-card__head">
+              <h3>Node.js</h3>
+              <span class="skill-dots" aria-hidden="true"><span class="is-filled"></span><span class="is-filled"></span><span></span></span>
+            </div>
+            <p class="skill-card__level">Confirmé — depuis 2023</p>
+            <p>Express, REST, WebSockets, JSON.</p>
+          </li>
+          <li class="skill-card">
+            <div class="skill-card__head">
+              <h3>SQL</h3>
+              <span class="skill-dots" aria-hidden="true"><span class="is-filled"></span><span class="is-filled"></span><span></span></span>
+            </div>
+            <p class="skill-card__level">Confirmé</p>
+            <p>MySQL, PostgreSQL, SQLite — modélisation, requêtes, jointures, index.</p>
+          </li>
+          <li class="skill-card">
+            <div class="skill-card__head">
+              <h3>API REST</h3>
+              <span class="skill-dots" aria-hidden="true"><span class="is-filled"></span><span class="is-filled"></span><span></span></span>
+            </div>
+            <p class="skill-card__level">Confirmé</p>
+            <p>JSON, authentification JWT, Swagger, Postman, Insomnia, OpenAPI.</p>
+          </li>
+          <li class="skill-card">
+            <div class="skill-card__head">
+              <h3>Python</h3>
+              <span class="skill-dots" aria-hidden="true"><span class="is-filled"></span><span></span><span></span></span>
+            </div>
+            <p class="skill-card__level">Intermédiaire</p>
+            <p>Automatisation, scripting, intégration LLM — n8n, API Claude.</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ===== STATEMENT ===== -->
+    <div id="statement" class="statement">
+      <div class="container">
+        <p class="statement__quote">Full-stack aujourd'hui, de plus en plus agentique demain — j'aime construire des choses qui tiennent la route en usage réel, et apprendre comment les outils IA changent notre façon de les construire.</p>
+        <p class="statement__body">Je suis actuellement en alternance BTS SIO (SLAM) à Paris, entre les cours et de vrais projets de production — un scanner de sécurité forensique en C#, une plateforme de blog PHP/MySQL, une app musicale desktop en Electron, et un site vitrine premium construit avec Next.js, Three.js et GSAP. En parallèle, je suis de près comment les agents IA et des protocoles comme MCP transforment le développement full-stack, et j'intègre ça dans ma façon de construire.</p>
+      </div>
+    </div>
+
+    <!-- ===== RÉALISATIONS ===== -->
+    <section id="work" class="work">
+      <h2 class="sr-only">Réalisations</h2>
+      <div class="work__divider" aria-hidden="true"></div>
+
+      <div class="work__track">
+
+          <article class="project-card">
+            <div class="project-card__thumb">
+              <img src="assets/images/work/capture-a-venir.svg" alt="Capture d'écran à venir pour le site Glow Up by Julie" width="640" height="360" loading="lazy">
+            </div>
+            <div class="project-card__body">
+              <p class="badge">Code — 2026</p>
+              <h3>Glow&nbsp;Up&nbsp;by&nbsp;Julie</h3>
+              <p>Site vitrine premium pour un institut de beauté parisien. Effets 3D WebGL, animations GSAP ScrollTrigger en parallax, fond animé. Interface haut de gamme avec sections services et réservation.</p>
+              <p class="project-card__role"><strong>Mon rôle :</strong> développeur full-stack freelance — conception et développement complet, du design à la mise en ligne.</p>
+              <ul class="tags">
+                <li>Next.js</li><li>Three.js</li><li>GSAP ScrollTrigger</li><li>Framer Motion</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-card__thumb">
+              <img src="assets/images/work/reek.jpg" alt="Capture de la démo vidéo de Reek, scanner forensique Windows en thème sombre" width="640" height="360" loading="lazy">
+            </div>
+            <div class="project-card__body">
+              <p class="badge">Outil — 2025</p>
+              <h3>Reek</h3>
+              <p>Scanner forensique desktop pour Windows. Détecte les traces de cheats à travers 35 sections de vérification en s'appuyant sur les artefacts natifs de Windows (Prefetch, Amcache, Shimcache, UserAssist, processus, drivers, réseau, intégrité système…).</p>
+              <p class="project-card__role"><strong>Mon rôle :</strong> développeur — projet en milieu professionnel (alternance). Application hybride C# + interface web embarquée (WebView2), scan temps réel des processus actifs.</p>
+              <ul class="tags">
+                <li>C#</li><li>WinForms</li><li>WebView2</li><li>PowerShell</li><li>HTML/CSS/JS</li>
+              </ul>
+              <a href="https://github.com/egomania1/reek" target="_blank" rel="noopener noreferrer" class="project-card__link">Voir le code ↗</a>
+              <a href="https://www.youtube.com/watch?v=15LxpykwNKQ" target="_blank" rel="noopener noreferrer" class="project-card__link">Voir la démo ↗</a>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-card__thumb">
+              <img src="assets/images/work/capture-a-venir.svg" alt="Capture d'écran à venir pour l'application REV" width="640" height="360" loading="lazy">
+            </div>
+            <div class="project-card__body">
+              <p class="badge">Outil — 2025</p>
+              <h3>REV</h3>
+              <p>Application musicale desktop Windows. Lecteur audio avancé avec playlists, visualiseur temps réel et gestion complète de bibliothèque, via une interface native Electron + React.</p>
+              <p class="project-card__role"><strong>Mon rôle :</strong> développeur — projet en milieu professionnel (alternance). Lecteur audio natif, gestion de playlists, backend Express local, livraison en environnement réel.</p>
+              <ul class="tags">
+                <li>Electron</li><li>React</li><li>Node.js</li><li>Web Audio API</li>
+              </ul>
+              <a href="https://github.com/egomania1/rev-son" target="_blank" rel="noopener noreferrer" class="project-card__link">Voir le code ↗</a>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-card__thumb">
+              <img src="assets/images/work/notail-ia.jpg" alt="Capture de la démo vidéo de Notail IA, application de prise de notes avec illustrations WebGL" width="640" height="360" loading="lazy">
+            </div>
+            <div class="project-card__body">
+              <p class="badge">Code — 2026</p>
+              <h3>Notail&nbsp;IA</h3>
+              <p>Application de prise de notes intelligente : résumés automatiques, tags, organisation intelligente, recherche sémantique, suggestions IA et illustrations WebGL.</p>
+              <p class="project-card__role"><strong>Mon rôle :</strong> projet personnel — développeur solo, de la conception à la mise en ligne.</p>
+              <ul class="tags">
+                <li>HTML5</li><li>CSS3</li><li>JavaScript (ES6+)</li><li>Three.js</li><li>WebGL</li>
+              </ul>
+              <a href="https://github.com/egomania1/notail-ia-" target="_blank" rel="noopener noreferrer" class="project-card__link">Voir le code ↗</a>
+              <a href="https://www.youtube.com/watch?v=GrnoykhUkB8" target="_blank" rel="noopener noreferrer" class="project-card__link">Voir la démo ↗</a>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-card__thumb">
+              <img src="assets/images/work/novail-ia.jpg" alt="Capture de la démo vidéo de Novail IA, solution de cybersécurité pour entreprises" width="640" height="360" loading="lazy">
+            </div>
+            <div class="project-card__body">
+              <p class="badge">Code — 2026</p>
+              <h3>Novail&nbsp;IA</h3>
+              <p>Solution de cybersécurité conçue pour aider les entreprises à protéger leurs données sensibles sans complexité : surveillance automatisée, identification des données sensibles et protection en temps réel.</p>
+              <p class="project-card__role"><strong>Mon rôle :</strong> projet personnel — développeur solo, de la conception à la mise en ligne.</p>
+              <ul class="tags">
+                <li>HTML5</li><li>CSS3</li><li>JavaScript (ES6+)</li><li>Three.js</li><li>WebGL / OGL</li><li>Framer Motion</li>
+              </ul>
+              <a href="https://github.com/egomania1/Novail-ia-" target="_blank" rel="noopener noreferrer" class="project-card__link">Voir le code ↗</a>
+              <a href="https://www.youtube.com/watch?v=z0IItK8lJKY" target="_blank" rel="noopener noreferrer" class="project-card__link">Voir la démo ↗</a>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-card__thumb">
+              <img src="assets/images/work/eboutique.jpg" alt="Capture de la démo vidéo de l'application e-commerce eBoutique" width="640" height="360" loading="lazy">
+            </div>
+            <div class="project-card__body">
+              <p class="badge">Code — 2024</p>
+              <h3>eBoutique</h3>
+              <p>Application e-commerce développée en PHP avec architecture MVC : catalogue, inscription/connexion, gestion des rôles, upload d'images, panier en session, validation des commandes et profil utilisateur.</p>
+              <p class="project-card__role"><strong>Mon rôle :</strong> développeur — projet de formation IPSSI.</p>
+              <ul class="tags">
+                <li>PHP (MVC)</li><li>MySQL (PDO)</li><li>HTML5</li><li>CSS3</li><li>JavaScript</li>
+              </ul>
+              <a href="https://github.com/egomania1/tp-eboutique" target="_blank" rel="noopener noreferrer" class="project-card__link">Voir le code ↗</a>
+              <a href="https://www.youtube.com/watch?v=59ojEeLju3Y" target="_blank" rel="noopener noreferrer" class="project-card__link">Voir la démo ↗</a>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-card__thumb">
+              <img src="assets/images/work/capture-a-venir.svg" alt="Capture d'écran à venir pour le blog communautaire PHP MVC" width="640" height="360" loading="lazy">
+            </div>
+            <div class="project-card__body">
+              <p class="badge">Code — 2026</p>
+              <h3>devmah — Blog communautaire PHP&nbsp;MVC</h3>
+              <p>Plateforme de blog communautaire sur le développement et la cybersécurité, conçue de zéro en PHP pur (sans framework), architecture MVC maison complète. Likes en AJAX, commentaires, bookmarks, notifications, salons de discussion par technologie, panneau admin, flux RSS.</p>
+              <p class="project-card__role"><strong>Mon rôle :</strong> développeur — projet de formation IPSSI, TP Blog 1ère année (sept. 2025 → avr. 2026).</p>
+              <ul class="tags">
+                <li>PHP 8</li><li>MySQL (PDO)</li><li>HTML5</li><li>CSS3</li><li>JavaScript</li>
+              </ul>
+              <a href="https://github.com/egomania1/BLOG-DEV1" target="_blank" rel="noopener noreferrer" class="project-card__link">Voir le code ↗</a>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-card__thumb">
+              <img src="assets/images/work/arbadon.jpg" alt="Capture de la démo vidéo d'Arbadon, plateforme de reforestation digitale" width="640" height="360" loading="lazy">
+            </div>
+            <div class="project-card__body">
+              <p class="badge">Code — 2025</p>
+              <h3>Arbadon</h3>
+              <p>Plateforme de reforestation digitale : financer la plantation d'arbres à travers une expérience immersive. Page d'accueil avec vidéo de fond, compteurs de statistiques animés, formulaires de don, effet glassmorphism, 100&nbsp;% responsive.</p>
+              <p class="project-card__role"><strong>Mon rôle :</strong> développeur — projet de formation IPSSI, travail en équipe (Git : branches, merge, livraison).</p>
+              <ul class="tags">
+                <li>HTML5</li><li>Tailwind CSS</li><li>CSS3</li><li>JavaScript (ES6+)</li>
+              </ul>
+              <a href="https://github.com/egomania1/Arbadon" target="_blank" rel="noopener noreferrer" class="project-card__link">Voir le code ↗</a>
+              <a href="https://youtu.be/qdrY_C19Xkk" target="_blank" rel="noopener noreferrer" class="project-card__link">Voir la démo ↗</a>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-card__thumb">
+              <img src="assets/images/work/capture-a-venir.svg" alt="Capture d'écran à venir pour l'espace utilisateur Quasar" width="640" height="360" loading="lazy">
+            </div>
+            <div class="project-card__body">
+              <p class="badge">Code — 2026</p>
+              <h3>Espace utilisateur Quasar</h3>
+              <p>Espace utilisateur avec authentification via le framework Quasar (Vue.js). Interface de connexion et espace membre déployés sur GitHub Pages, composants réutilisables.</p>
+              <p class="project-card__role"><strong>Mon rôle :</strong> développeur — projet en milieu professionnel (alternance).</p>
+              <ul class="tags">
+                <li>Vue.js</li><li>Quasar Framework</li><li>GitHub Pages</li>
+              </ul>
+              <a href="https://github.com/egomania1/quasar-connexion" target="_blank" rel="noopener noreferrer" class="project-card__link">Voir le code ↗</a>
+            </div>
+          </article>
+
+      </div>
+
+      <div class="work__pagination">
+        <ol class="work__dots" id="workDots"></ol>
+        <span class="work__counter" id="workCounter">01 / 09</span>
+      </div>
+    </section>
+
+    <!-- ===== COMPÉTENCES BTS SIO — FICHE DE SYNTHÈSE ===== -->
+    <section id="competences-bts" class="conformite">
+      <div class="container">
+        <h2>Compétences BTS SIO — Bloc 1</h2>
+        <p class="section-intro">
+          Luye Kelian — IPSSI Paris (alternance) — BTS SIO option SLAM — Session 2026.
+          Les 6 compétences du référentiel sont couvertes par les réalisations ci-dessous, réparties entre
+          formation à l'IPSSI et milieu professionnel en alternance.
+        </p>
+
+        <h3>Répartition par compétence</h3>
+        <div class="table-wrap">
+          <table class="conformite__table">
+            <caption class="sr-only">Nombre de réalisations mobilisant chaque compétence du référentiel Bloc 1</caption>
+            <thead>
+              <tr>
+                <th scope="col">Code</th>
+                <th scope="col">Compétence</th>
+                <th scope="col">Réalisations</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row">C</th><td>Gérer le patrimoine informatique</td><td>3</td></tr>
+              <tr><th scope="row">D</th><td>Répondre aux incidents et aux demandes d'assistance</td><td>0</td></tr>
+              <tr><th scope="row">E</th><td>Développer la présence en ligne de l'organisation</td><td>3</td></tr>
+              <tr><th scope="row">F</th><td>Travailler en mode projet</td><td>5</td></tr>
+              <tr><th scope="row">G</th><td>Mettre à disposition des utilisateurs un service informatique</td><td>4</td></tr>
+              <tr><th scope="row">H</th><td>Organiser son développement professionnel</td><td>3</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>Détail par réalisation</h3>
+        <div class="conformite__grid">
+
+          <article class="conformite-card">
+            <h4>Arbadon — reforestation / don écologique</h4>
+            <p class="conformite-card__context">Formation IPSSI — sept. 2025 → avr. 2026</p>
+            <p><strong>Objectif :</strong> concevoir un site vitrine dédié à une association de reforestation avec système de don en ligne.</p>
+            <p><strong>Résultat :</strong> interface responsive livrée et présentée au client. Gestion de version en équipe via Git : branches, merge, livraison.</p>
+            <ul class="tags">
+              <li>E — Présence en ligne</li><li>F — Mode projet</li><li>G — Service informatique</li><li>H — Développement pro.</li>
+            </ul>
+          </article>
+
+          <article class="conformite-card">
+            <h4>devmah — blog communautaire PHP MVC</h4>
+            <p class="conformite-card__context">Formation IPSSI — sept. 2025 → avr. 2026</p>
+            <p><strong>Objectif :</strong> développer une plateforme de blog communautaire sécurisée avec architecture MVC maison.</p>
+            <p><strong>Résultat :</strong> authentification sécurisée (hachage SHA-256), CRUD articles et commentaires, environnement dockerisé.</p>
+            <ul class="tags">
+              <li>C — Patrimoine informatique</li><li>E — Présence en ligne</li><li>F — Mode projet</li><li>G — Service informatique</li>
+            </ul>
+          </article>
+
+          <article class="conformite-card">
+            <h4>Application desktop musicale — REV</h4>
+            <p class="conformite-card__context">Milieu professionnel — alternance — avr. → juin 2026</p>
+            <p><strong>Objectif :</strong> créer une application desktop de lecture musicale avec gestion complète de bibliothèque audio.</p>
+            <p><strong>Résultat :</strong> lecteur audio natif, playlists, interface React moderne, backend Express local, livraison en environnement réel.</p>
+            <ul class="tags">
+              <li>F — Mode projet</li><li>G — Service informatique</li><li>H — Développement pro.</li>
+            </ul>
+          </article>
+
+          <article class="conformite-card">
+            <h4>Logiciel de scan et d'analyse sécurité — REEK</h4>
+            <p class="conformite-card__context">Milieu professionnel — alternance — avr. → juin 2026</p>
+            <p><strong>Objectif :</strong> développer un logiciel de scan et d'analyse de sécurité système Windows pour audit interne.</p>
+            <p><strong>Résultat :</strong> application hybride C# + interface web embarquée (WebView2), 5 pages fonctionnelles, scan temps réel des processus actifs.</p>
+            <ul class="tags">
+              <li>C — Patrimoine informatique</li><li>F — Mode projet</li><li>H — Développement pro.</li>
+            </ul>
+          </article>
+
+          <article class="conformite-card">
+            <h4>Page connexion + espace utilisateur Quasar</h4>
+            <p class="conformite-card__context">Milieu professionnel — alternance — avr. → juin 2026</p>
+            <p><strong>Objectif :</strong> développer un espace utilisateur avec authentification via le framework Quasar (Vue.js).</p>
+            <p><strong>Résultat :</strong> interface de connexion et espace membre déployé sur GitHub Pages, composants réutilisables, responsive design.</p>
+            <ul class="tags">
+              <li>C — Patrimoine informatique</li><li>E — Présence en ligne</li><li>F — Mode projet</li><li>G — Service informatique</li>
+            </ul>
+          </article>
+
+        </div>
+
+        <p class="conformite__note">
+          La fiche de synthèse officielle (modèle distribué en cours) est en cours de renseignement à partir de ce tableau —
+          elle détaille pour chaque compétence les situations rencontrées en cours, en atelier et en entreprise.
+        </p>
+      </div>
+    </section>
+
+    <!-- ===== VEILLE TECHNOLOGIQUE ===== -->
+    <section id="veille" class="veille">
+      <div class="container">
+        <h2>Veille technologique</h2>
+        <h3>Les agents IA outillés et le protocole MCP</h3>
+        <p><strong>Objectif :</strong> comprendre comment intégrer des agents IA dans une application web.</p>
+
+        <h4>Ce que j'en retiens</h4>
+        <ul>
+          <li>MCP standardise la connexion entre un agent IA et des outils, données ou APIs externes.</li>
+          <li>L'AI SDK TypeScript permet de construire des agents réutilisables dans Next.js et Node.js.</li>
+          <li>Les frameworks exposent de plus en plus de contexte aux assistants pour aider au débogage.</li>
+          <li>La sécurité reste centrale : validation des entrées, permissions limitées, supervision humaine.</li>
+        </ul>
+
+        <p><strong>Méthode :</strong> documentation officielle, expérimentation, projets personnels connectés à des LLMs.</p>
+
+        <h4>Sources</h4>
+        <ul class="sources">
+          <li><a href="https://modelcontextprotocol.io" target="_blank" rel="noopener noreferrer">modelcontextprotocol.io</a></li>
+          <li><a href="https://docs.anthropic.com" target="_blank" rel="noopener noreferrer">docs.anthropic.com</a></li>
+          <li><a href="https://ai-sdk.dev" target="_blank" rel="noopener noreferrer">ai-sdk.dev</a></li>
+          <li><a href="https://nextjs.org" target="_blank" rel="noopener noreferrer">nextjs.org</a></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ===== CONTACT ===== -->
+    <section id="contact" class="contact">
+      <div class="container">
+        <h2>Contact</h2>
+        <p>
+          <a href="mailto:kelian.luye@gmail.com">kelian.luye@gmail.com</a><br>
+          <a href="tel:+33651972324">06 51 97 23 24</a>
+        </p>
+        <ul class="socials">
+          <li><a href="https://github.com/egomania1" target="_blank" rel="noopener noreferrer">GitHub ↗</a></li>
+          <li><a href="https://www.linkedin.com/in/kelian-luye/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a></li>
+        </ul>
+        <a href="assets/documents/cv-kelian-luye.pdf" class="btn btn--primary" download>Télécharger mon CV (PDF)</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; 2026 Kelian Luye. Site conçu et développé en HTML5, CSS3 et JavaScript.</p>
+    </div>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/animations.js"></script>
+</body>
+</html>

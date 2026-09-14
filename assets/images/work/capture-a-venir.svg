@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" role="img" aria-labelledby="title">
+  <title id="title">Capture d'écran à venir</title>
+  <rect width="640" height="360" fill="#12141a"/>
+  <rect x="1" y="1" width="638" height="358" fill="none" stroke="#2a2d36" stroke-width="2"/>
+  <text x="320" y="185" font-family="monospace" font-size="18" fill="#5a5e6a" text-anchor="middle">capture à venir</text>
+</svg>
