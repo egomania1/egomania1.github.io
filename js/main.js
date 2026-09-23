@@ -6,6 +6,7 @@
  *   3. initClock()        — horloge en direct (heure + fuseau) dans le hero
  *   4. initCursorCoords() — coordonnées X/Y de la souris, en direct
  *   5. initScrollTop()    — bouton "remonter en haut"
+ *   6. initSkills()       — onglets de la section Compétences (clic + clavier)
  *
  * Aucune dépendance externe : uniquement des API natives du navigateur.
  * Les animations au scroll vivent dans animations.js (GSAP).
@@ -102,10 +103,64 @@ function initScrollTop() {
   });
 }
 
+function initSkills() {
+  const section = document.getElementById("skills");
+  if (!section) return;
+
+  const tabs = Array.from(section.querySelectorAll('[role="tab"]'));
+  const panels = tabs.map((tab) => document.getElementById(tab.getAttribute("aria-controls")));
+  if (!tabs.length || panels.includes(null)) return;
+
+  function select(index, moveFocus) {
+    tabs.forEach((tab, i) => {
+      const isActive = i === index;
+      tab.setAttribute("aria-selected", String(isActive));
+      tab.tabIndex = isActive ? 0 : -1;
+      panels[i].hidden = !isActive;
+    });
+
+    const panel = panels[index];
+    panel.classList.remove("is-entering");
+    // Forcer un reflow relance l'animation CSS même si on revient sur un
+    // panneau déjà animé.
+    void panel.offsetWidth;
+    panel.classList.add("is-entering");
+
+    // "nearest" plutôt que "center" : sur ordinateur les pastilles tiennent
+    // toutes à l'écran, seul le rail horizontal du mobile doit défiler.
+    tabs[index].scrollIntoView({ block: "nearest", inline: "center", behavior: "smooth" });
+    if (moveFocus) tabs[index].focus();
+  }
+
+  const PREVIOUS_KEYS = ["ArrowUp", "ArrowLeft"];
+  const NEXT_KEYS = ["ArrowDown", "ArrowRight"];
+
+  tabs.forEach((tab, index) => {
+    tab.addEventListener("click", () => select(index, false));
+    tab.addEventListener("keydown", (event) => {
+      let target = null;
+      if (PREVIOUS_KEYS.includes(event.key)) target = (index - 1 + tabs.length) % tabs.length;
+      if (NEXT_KEYS.includes(event.key)) target = (index + 1) % tabs.length;
+      if (event.key === "Home") target = 0;
+      if (event.key === "End") target = tabs.length - 1;
+      if (target === null) return;
+      event.preventDefault();
+      select(target, true);
+    });
+  });
+
+  section.classList.add("is-enhanced");
+  tabs.forEach((tab, i) => {
+    tab.tabIndex = i === 0 ? 0 : -1;
+    panels[i].hidden = i !== 0;
+  });
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   initNav();
   initTheme();
   initClock();
   initCursorCoords();
   initScrollTop();
+  initSkills();
 });
