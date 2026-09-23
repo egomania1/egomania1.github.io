@@ -1,74 +1,212 @@
 /* ==========================================================================
-   Compétences
+   Compétences — onglets verticaux : une pastille par techno à gauche, le
+   détail de la techno choisie à droite (voir initSkills dans main.js).
+   Sans JavaScript, les pastilles sont masquées et tout le détail s'affiche.
    ========================================================================== */
-.skills__grid {
+.skills__layout {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-  gap: 1px;
+  gap: 2rem;
   margin-top: 2rem;
-  background: var(--border);
-  border: 1px solid var(--border);
 }
 
-.skill-card {
-  background: var(--bg);
-  padding: 1.5rem;
+.skills__tabs {
+  display: none;
+}
+
+.skills__panels {
+  display: grid;
+  gap: 3rem;
+}
+
+.skill {
+  display: grid;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.skill__text {
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
   gap: 0.75rem;
 }
 
-.skill-card__head {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 0.5rem;
-}
-
-.skill-card h3 {
-  font-size: 1.05rem;
+.skill__level {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
   margin: 0;
-  font-weight: 500;
-}
-
-.skill-card p {
-  color: var(--fg-muted);
-  font-size: 0.85rem;
-  line-height: 1.5;
-  margin: 0;
-}
-
-.skill-card__level {
+  padding: 0.3em 0.8em;
+  border: 1px solid var(--border);
+  border-radius: 999px;
   font-family: var(--font-mono);
-  font-size: 0.7rem;
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
-  letter-spacing: 0.03em;
   color: var(--fg-muted);
 }
 
-/* 3 points générés en CSS pur (box-shadow) selon data-level="1|2|3" —
-   pas besoin de <span> par point dans le HTML. */
-.skill-dots {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--border);
-  box-shadow: calc(6px + 0.3rem) 0 0 var(--border), calc(12px + 0.6rem) 0 0 var(--border);
-  margin-top: 0.35rem;
-  margin-right: calc(12px + 0.6rem);
+/* 3 segments dessinés par un seul élément : le dégradé colore autant de
+   tiers que le niveau (data-level="1|2|3"). */
+.skill__meter {
+  --filled: 0%;
+  width: 36px;
+  height: 4px;
+  border-radius: 2px;
+  background:
+    linear-gradient(90deg, transparent 31%, var(--bg) 31% 34.5%, transparent 34.5% 65.5%, var(--bg) 65.5% 69%, transparent 69%),
+    linear-gradient(90deg, var(--accent-blue) var(--filled), var(--border) var(--filled));
+}
+
+.skill__meter[data-level="1"] {
+  --filled: 33.3%;
+}
+
+.skill__meter[data-level="2"] {
+  --filled: 66.6%;
+}
+
+.skill__meter[data-level="3"] {
+  --filled: 100%;
+}
+
+.skill__name {
+  margin: 0;
+  font-size: clamp(2.8rem, 7vw, 6rem);
+  font-weight: 500;
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+}
+
+.skill__tools {
+  margin: 0;
+  max-width: 44ch;
+  font-size: clamp(1rem, 1.6vw, 1.2rem);
+  line-height: 1.6;
+  color: var(--fg-muted);
+}
+
+.skill__code {
+  margin: 0;
+  min-width: 0;
+  background: var(--card-bg);
+  backdrop-filter: blur(18px) saturate(150%);
+  -webkit-backdrop-filter: blur(18px) saturate(150%);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.skill__code figcaption {
+  padding: 0.7rem 1.1rem;
+  border-bottom: 1px solid var(--border);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  color: var(--fg-muted);
+}
+
+.skill__code pre {
+  margin: 0;
+  padding: 1.1rem 1.2rem 1.3rem;
+  overflow-x: auto;
+  font-family: var(--font-mono);
+  font-size: clamp(0.78rem, 1.1vw, 0.9rem);
+  line-height: 1.7;
+  color: var(--fg);
+}
+
+/* ----- Version interactive (classe posée par main.js) ------------------- */
+.skills.is-enhanced .skills__tabs {
+  display: flex;
+  gap: 0.6rem;
+  padding: 0.25rem 0;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+
+.skills.is-enhanced .skills__tabs::-webkit-scrollbar {
+  display: none;
+}
+
+.skills__tab {
   flex-shrink: 0;
+  scroll-snap-align: center;
+  padding: 0.55em 1.2em;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--fg);
+  font: inherit;
+  font-size: 0.9rem;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 }
 
-.skill-dots[data-level="1"] {
-  background: var(--accent-blue);
+.skills__tab:hover {
+  border-color: var(--fg-muted);
 }
 
-.skill-dots[data-level="2"] {
-  background: var(--accent-blue);
-  box-shadow: calc(6px + 0.3rem) 0 0 var(--accent-blue), calc(12px + 0.6rem) 0 0 var(--border);
+.skills__tab[aria-selected="true"] {
+  background: var(--fg);
+  border-color: var(--fg);
+  color: var(--bg);
 }
 
-.skill-dots[data-level="3"] {
-  background: var(--accent-blue);
-  box-shadow: calc(6px + 0.3rem) 0 0 var(--accent-blue), calc(12px + 0.6rem) 0 0 var(--accent-blue);
+.skills.is-enhanced .skills__panels {
+  display: block;
+}
+
+.skills.is-enhanced .skill[hidden] {
+  display: none;
+}
+
+.skills.is-enhanced .skill.is-entering {
+  animation: skill-in 0.4s ease-in-out;
+}
+
+@keyframes skill-in {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@media (min-width: 900px) {
+  .skills__layout {
+    grid-template-columns: auto 1fr;
+    gap: clamp(2rem, 5vw, 5rem);
+  }
+
+  .skills.is-enhanced .skills__tabs {
+    flex-direction: column;
+    align-items: flex-start;
+    overflow: visible;
+  }
+
+  .skill {
+    grid-template-columns: 6fr 5fr;
+    gap: clamp(2rem, 4vw, 4rem);
+  }
+
+  .skills.is-enhanced .skill {
+    min-height: 26rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skills.is-enhanced .skill.is-entering {
+    animation: none;
+  }
+
+  .skills__tab {
+    transition: none;
+  }
 }

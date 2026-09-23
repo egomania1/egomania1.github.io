@@ -39,6 +39,17 @@ body::after {
   animation-delay: -8s;
 }
 
+/* Grille qui s'allume sous le pointeur (dessinée par js/grid-pulse.js),
+   entre la photo de fond et le contenu. */
+.grid-pulse {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
 @keyframes drift {
   from {
     transform: translate(0, 0) scale(1);

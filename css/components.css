@@ -95,3 +95,15 @@
 .grid-overlay__line--v-a {
   left: 33%;
 }
+
+/* ==========================================================================
+   Panneau vitré — même rendu que les cartes BTS, pour garder le texte
+   lisible au-dessus de la photo de fond.
+   ========================================================================== */
+.panel {
+  background: var(--card-bg);
+  backdrop-filter: blur(18px) saturate(150%);
+  -webkit-backdrop-filter: blur(18px) saturate(150%);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}

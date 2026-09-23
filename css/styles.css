@@ -2,6 +2,7 @@
    composants partagés ensuite, puis une section par bloc de la page. */
 @import url("variables.css");
 @import url("base.css");
+@import url("loader.css");
 @import url("background.css");
 @import url("header.css");
 @import url("components.css");
@@ -13,4 +14,3 @@
 @import url("competences-bts.css");
 @import url("veille.css");
 @import url("contact.css");
-@import url("footer.css");

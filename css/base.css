@@ -80,6 +80,15 @@ ul, ol {
   padding: 0 1.25rem;
 }
 
+.container--wide {
+  max-width: 1440px;
+}
+
+.container--full {
+  max-width: none;
+  padding-inline: clamp(1.25rem, 3vw, 3rem);
+}
+
 section {
   padding: clamp(3rem, 8vw, 6rem) 0;
 }

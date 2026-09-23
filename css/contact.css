@@ -1,28 +1,66 @@
 /* ==========================================================================
    Contact
    ========================================================================== */
-.contact {
-  text-align: center;
+.contact__card {
+  display: grid;
+  gap: 2rem;
+  padding: clamp(1.5rem, 4vw, 3rem);
 }
 
-.contact p {
-  font-size: 1.1rem;
+.contact__intro h2 {
+  font-size: clamp(2rem, 5vw, 3rem);
 }
 
-.contact a[href^="mailto"],
-.contact a[href^="tel"] {
-  text-decoration: none;
+.contact__intro p {
+  color: var(--fg-muted);
+  max-width: 38ch;
+  margin-bottom: 1.75rem;
 }
 
-.socials {
+.contact__list {
+  border-top: 1px solid var(--border);
+}
+
+.contact__item {
   display: flex;
-  justify-content: center;
-  gap: 1.5rem;
-  margin: 1rem 0 2rem;
-  font-family: var(--font-mono);
-  font-size: 0.9rem;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.25rem 1rem;
+  padding: 1.1rem 0.25rem;
+  border-bottom: 1px solid var(--border);
+  text-decoration: none;
+  transition: color 0.2s ease, padding 0.2s ease;
 }
 
-.socials a {
-  text-decoration: none;
+.contact__item:hover,
+.contact__item:focus-visible {
+  color: var(--accent);
+  padding-left: 0.75rem;
+}
+
+.contact__label {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--fg-muted);
+}
+
+.contact__value {
+  font-size: 1.05rem;
+}
+
+@media (min-width: 900px) {
+  .contact__card {
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 4rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .contact__item {
+    transition: none;
+  }
 }

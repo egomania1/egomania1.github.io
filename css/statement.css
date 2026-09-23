@@ -24,9 +24,10 @@
 }
 
 .statement__body {
-  max-width: 60ch;
+  max-width: 46ch;
   margin: 2rem auto 0;
   color: var(--fg-muted);
-  font-size: 1.05rem;
-  line-height: 1.7;
+  font-size: clamp(1.6rem, 4vw, 2.6rem);
+  line-height: 1.25;
+  font-weight: 500;
 }

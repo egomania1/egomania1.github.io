@@ -1,37 +1,134 @@
 /* ==========================================================================
-   Veille
+   Veille — cartes empilées au scroll
+   Chaque carte reste collée (sticky) pendant que la suivante monte
+   par-dessus, avec un léger décalage vertical par rang ; animations.js
+   réduit ensuite l'échelle des cartes recouvertes pour creuser la pile.
    ========================================================================== */
-.veille h3 {
-  font-size: 1.3rem;
+.stack {
+  margin-top: 2.5rem;
 }
 
-.veille ul {
-  margin: 1rem 0 1.5rem;
-}
-
-.veille li {
-  position: relative;
-  padding-left: 1.2rem;
-  margin-bottom: 0.5rem;
-  color: var(--fg-muted);
-}
-
-.veille li::before {
-  content: "→";
-  position: absolute;
-  left: 0;
-  color: var(--accent);
-}
-
-.sources {
+.stack__item {
+  position: sticky;
+  top: 0;
   display: flex;
-  flex-wrap: wrap;
-  gap: 0.6rem;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  min-height: 600px;
 }
 
-.sources a {
+.stack__card {
+  position: relative;
+  display: grid;
+  gap: 1.5rem;
+  width: 100%;
+  min-height: min(72vh, 680px);
+  padding: clamp(2rem, 5vw, 4.5rem);
+  border-radius: 20px;
+  background: var(--stack-bg);
+  color: var(--stack-fg);
+  transform-origin: top center;
+  box-shadow: 0 -12px 40px rgba(0, 0, 0, 0.18);
+}
+
+/* Décalage par rang : les cartes se superposent en laissant dépasser le
+   haut des précédentes. */
+.stack__item:nth-child(1) .stack__card { top: -2rem; --stack-bg: #1a3de8; --stack-fg: #ffffff; }
+.stack__item:nth-child(2) .stack__card { top: -0.5rem; --stack-bg: #0f1430; --stack-fg: #ffffff; }
+.stack__item:nth-child(3) .stack__card { top: 1rem; --stack-bg: #d4af37; --stack-fg: #0a0a0a; }
+.stack__item:nth-child(4) .stack__card { top: 2.5rem; --stack-bg: #354d44; --stack-fg: #ffffff; }
+.stack__item:nth-child(5) .stack__card { top: 4rem; --stack-bg: #efeef6; --stack-fg: #16152b; }
+.stack__item:nth-child(6) .stack__card { top: 5.5rem; --stack-bg: #2115aa; --stack-fg: #ffffff; }
+
+.stack__text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.stack__kicker {
+  margin: 0;
   font-family: var(--font-mono);
+  font-size: 0.85rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  opacity: 0.75;
+}
+
+.stack__card h3 {
+  margin: 0;
+  font-size: clamp(2.4rem, 6vw, 5rem);
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.stack__card p {
+  margin: 0;
+  max-width: 40ch;
+  font-size: clamp(1.1rem, 2vw, 1.6rem);
+  line-height: 1.6;
+}
+
+.stack__meta {
+  display: grid;
+  gap: 1rem;
+  margin: 0.5rem 0 0;
+}
+
+.stack__meta > div {
+  padding-top: 0.9rem;
+  border-top: 1px solid currentColor;
+  border-top-color: color-mix(in srgb, currentColor 30%, transparent);
+}
+
+.stack__meta dt {
+  margin-bottom: 0.25rem;
   font-size: 0.8rem;
-  text-decoration: underline;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.stack__meta dd {
+  margin: 0;
+  opacity: 0.85;
+}
+
+.stack__card .stack__index {
+  align-self: end;
+  justify-self: end;
+  max-width: none;
+  font-size: clamp(5rem, 16vw, 15rem);
+  font-weight: 800;
+  line-height: 0.8;
+  letter-spacing: -0.05em;
+  opacity: 0.9;
+}
+
+.stack__sources {
+  display: grid;
+  gap: 0.6rem;
+  margin-top: 0.5rem;
+}
+
+.stack__sources a {
+  display: flex;
+  flex-direction: column;
+  font-family: var(--font-mono);
+  font-size: 1.05rem;
   text-underline-offset: 3px;
+}
+
+.stack__sources span {
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  opacity: 0.8;
+}
+
+@media (min-width: 900px) {
+  .stack__card {
+    grid-template-columns: 1fr auto;
+  }
 }
