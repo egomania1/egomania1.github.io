@@ -1,0 +1,78 @@
+/* ==========================================================================
+   Qui je suis
+   ========================================================================== */
+.about {
+  position: relative;
+  overflow: hidden;
+}
+
+.about__grid {
+  position: relative;
+  z-index: 1;
+  padding-inline: clamp(1.5rem, 4vw, 2.5rem);
+  display: grid;
+  gap: 2.5rem;
+  grid-template-columns: 1fr;
+}
+
+.about__portrait-frame {
+  width: 100%;
+  max-width: 320px;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+
+.about__portrait {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.about__text h3 {
+  margin-top: 2rem;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--fg-muted);
+}
+
+.lead {
+  font-size: clamp(1.4rem, 3.2vw, 2.2rem);
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.about__text p:not(.lead) strong {
+  font-weight: 500;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.timeline li {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  padding: 0.75rem 0;
+  border-top: 1px solid var(--border);
+}
+
+.timeline li:first-child {
+  border-top: none;
+}
+
+.timeline__period {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--accent);
+}
+
+@media (min-width: 900px) {
+  .about__grid {
+    grid-template-columns: 1fr 2fr;
+    align-items: start;
+  }
+}
+
+/* --- Position de la grille décorative (base commune dans components.css) */
+.grid-overlay__line--h-mid { top: 50%; }

@@ -1,0 +1,97 @@
+/* ==========================================================================
+   Boutons / badges / tags — éléments réutilisés partout
+   ========================================================================== */
+.btn {
+  display: inline-block;
+  padding: 0.75em 1.4em;
+  border-radius: 999px;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: transform 0.15s ease, opacity 0.15s ease;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+}
+
+.btn--primary {
+  background: var(--accent);
+  color: #0a0a0a;
+}
+
+.badge {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--fg-muted);
+  margin: 0 0 0.4em;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.75rem;
+}
+
+.tags li {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  padding: 0.3em 0.6em;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  color: var(--fg-muted);
+}
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+  margin-bottom: 0.5rem;
+}
+
+/* ==========================================================================
+   Grille décorative en croix ("plan technique"), réutilisée dans plusieurs
+   sections (hero, à propos) avec des coordonnées différentes à chaque fois —
+   voir hero.css / about.css pour les positions spécifiques à chaque section.
+   ========================================================================== */
+.grid-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.grid-overlay__line {
+  position: absolute;
+  background: var(--border);
+}
+
+.grid-overlay__line--v {
+  top: 0;
+  bottom: 0;
+  width: 1px;
+}
+
+.grid-overlay__line--h {
+  left: 0;
+  right: 0;
+  height: 1px;
+}
+
+.grid-overlay__mark {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  font-size: 0.7rem;
+  color: var(--fg-muted);
+  opacity: 0.5;
+}
+
+/* Position commune aux deux sections qui utilisent cette grille */
+.grid-overlay__line--v-a {
+  left: 33%;
+}

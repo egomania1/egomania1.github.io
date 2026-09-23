@@ -1,0 +1,132 @@
+/* ==========================================================================
+   Réalisations — galerie épinglée qui défile à l'horizontale
+   (section pleine hauteur ; le scroll vertical est converti en translation
+   horizontale du rail de cartes par ScrollTrigger, voir animations.js)
+   ========================================================================== */
+.work {
+  position: relative;
+  height: 100vh;
+  min-height: 560px;
+  overflow: hidden;
+  padding: 0;
+}
+
+.work__divider {
+  position: absolute;
+  inset-inline: 0;
+  top: 50%;
+  border-top: 1px solid var(--border);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.work__track {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  width: max-content;
+  gap: 1.5rem;
+  padding: 0 10vw;
+  will-change: transform;
+}
+
+.project-card {
+  flex-shrink: 0;
+  width: min(85vw, 400px);
+  background: var(--card-bg);
+  backdrop-filter: blur(18px) saturate(150%);
+  -webkit-backdrop-filter: blur(18px) saturate(150%);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.project-card__thumb {
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-bottom: 1px solid var(--border);
+}
+
+.project-card__thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.project-card__body {
+  padding: 1.1rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.project-card h3 {
+  font-size: 1.05rem;
+}
+
+.project-card p {
+  font-size: 0.85rem;
+  color: var(--fg-muted);
+}
+
+.project-card__body > p:not(.badge):not(.project-card__role) {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  overflow: hidden;
+}
+
+.project-card__role {
+  color: var(--fg);
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  overflow: hidden;
+}
+
+.project-card__role strong {
+  color: var(--fg);
+}
+
+.project-card__link {
+  margin-top: auto;
+  padding-top: 0.6rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  align-self: flex-start;
+}
+
+.work__pagination {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--fg-muted);
+}
+
+.work__dots {
+  display: flex;
+  gap: 0.6rem;
+}
+
+.work__dots li {
+  opacity: 0.35;
+  transition: opacity 0.2s ease;
+}
+
+.work__dots li.is-active {
+  opacity: 1;
+  color: var(--fg);
+}

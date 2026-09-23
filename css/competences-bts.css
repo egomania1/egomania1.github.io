@@ -1,0 +1,69 @@
+/* ==========================================================================
+   Compétences BTS SIO
+   ========================================================================== */
+.table-wrap {
+  overflow-x: auto;
+  margin: 1.5rem 0;
+}
+
+.conformite__table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 480px;
+  font-size: 0.9rem;
+}
+
+.conformite__table th,
+.conformite__table td {
+  text-align: left;
+  padding: 0.65rem 0.9rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.conformite__table thead th {
+  color: var(--fg-muted);
+  font-weight: 600;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.conformite__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.25rem;
+  margin-top: 1.5rem;
+}
+
+.conformite-card {
+  background: var(--card-bg);
+  backdrop-filter: blur(18px) saturate(150%);
+  -webkit-backdrop-filter: blur(18px) saturate(150%);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.25rem;
+}
+
+.conformite-card h4 {
+  font-size: 1rem;
+}
+
+.conformite-card__context {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.conformite-card p {
+  font-size: 0.88rem;
+}
+
+.conformite__note {
+  color: var(--fg-muted);
+  font-size: 0.85rem;
+  border-left: 2px solid var(--accent);
+  padding-left: 1rem;
+  margin-top: 2rem;
+}

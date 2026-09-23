@@ -1,0 +1,28 @@
+/* ==========================================================================
+   Contact
+   ========================================================================== */
+.contact {
+  text-align: center;
+}
+
+.contact p {
+  font-size: 1.1rem;
+}
+
+.contact a[href^="mailto"],
+.contact a[href^="tel"] {
+  text-decoration: none;
+}
+
+.socials {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin: 1rem 0 2rem;
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+}
+
+.socials a {
+  text-decoration: none;
+}

@@ -1,0 +1,37 @@
+/* ==========================================================================
+   Veille
+   ========================================================================== */
+.veille h3 {
+  font-size: 1.3rem;
+}
+
+.veille ul {
+  margin: 1rem 0 1.5rem;
+}
+
+.veille li {
+  position: relative;
+  padding-left: 1.2rem;
+  margin-bottom: 0.5rem;
+  color: var(--fg-muted);
+}
+
+.veille li::before {
+  content: "→";
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+}
+
+.sources {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.sources a {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}

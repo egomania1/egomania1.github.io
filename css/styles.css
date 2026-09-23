@@ -1,0 +1,16 @@
+/* Point d'entrée — l'ordre suit la cascade : variables et base d'abord,
+   composants partagés ensuite, puis une section par bloc de la page. */
+@import url("variables.css");
+@import url("base.css");
+@import url("background.css");
+@import url("header.css");
+@import url("components.css");
+@import url("hero.css");
+@import url("about.css");
+@import url("skills.css");
+@import url("statement.css");
+@import url("work.css");
+@import url("competences-bts.css");
+@import url("veille.css");
+@import url("contact.css");
+@import url("footer.css");

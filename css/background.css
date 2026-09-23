@@ -1,0 +1,56 @@
+/* ==========================================================================
+   Fond dégradé animé (donne du relief au flou des cartes en verre)
+   Porté par body/body::before/body::after — aucun élément dédié dans le
+   HTML, ce fond est de la pure présentation.
+   ========================================================================== */
+body {
+  background-image: url("../assets/images/portrait.png");
+  background-size: cover;
+  background-position: center 20%;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+body::before,
+body::after {
+  content: "";
+  position: fixed;
+  z-index: -1;
+  width: 42vmax;
+  height: 42vmax;
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: 0.1;
+  pointer-events: none;
+  animation: drift 26s ease-in-out infinite alternate;
+}
+
+body::before {
+  top: -15%;
+  left: -12%;
+  background: var(--accent);
+}
+
+body::after {
+  bottom: -20%;
+  right: -12%;
+  background: var(--accent-blue);
+  animation-duration: 32s;
+  animation-delay: -8s;
+}
+
+@keyframes drift {
+  from {
+    transform: translate(0, 0) scale(1);
+  }
+  to {
+    transform: translate(8vw, 6vh) scale(1.15);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body::before,
+  body::after {
+    animation: none;
+  }
+}
