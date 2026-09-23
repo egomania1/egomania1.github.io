@@ -19,6 +19,19 @@
   </script>
 </head>
 <body>
+  <!-- ===== LOADER ===== -->
+  <div class="loader" id="loader" role="status" aria-live="polite">
+    <span class="sr-only">Chargement du site…</span>
+    <div class="loader__dots" aria-hidden="true">
+      <span class="loader__dot"></span>
+      <span class="loader__dot"></span>
+      <span class="loader__dot"></span>
+    </div>
+  </div>
+  <script src="js/loader.js"></script>
+
+  <canvas class="grid-pulse" id="gridPulse" aria-hidden="true"></canvas>
+
   <a href="#main-content" class="skip-link">Aller au contenu</a>
 
   <!-- ===== EN-TÊTE / NAVIGATION ===== -->
@@ -72,13 +85,13 @@
       <div class="hero__top">
         <p class="hero__tagline">Design &amp;<br>Développement</p>
         <p class="hero__lead">Penser en systèmes.<br>Concevoir avec soin.</p>
-        <p class="hero__bio">Développeur full-stack en alternance BTS SIO (SLAM) à Paris. Je construis avec Next.js, React et Node, et j'intègre de plus en plus les agents IA et le protocole MCP dans ma façon de travailler.</p>
+        <p class="hero__bio">Développeur full-stack en alternance BTS SIO (SLAM) à Paris. Je développe en PHP et JavaScript, je me forme en autodidacte à React et Node, et j'intègre de plus en plus les agents IA et le protocole MCP dans ma façon de travailler.</p>
       </div>
 
       <h1 class="hero__headline">
-        <span>J'apporte</span>
-        <span>savoir-faire &amp; goût</span>
-        <span>au travail numérique</span>
+        <span class="line"><span class="line__inner">J'apporte</span></span>
+        <span class="line"><span class="line__inner">savoir-faire &amp; goût</span></span>
+        <span class="line"><span class="line__inner">au travail numérique</span></span>
       </h1>
 
       <div class="hero__bottombar">
@@ -106,8 +119,8 @@
         <div class="about__text">
           <h2 class="eyebrow">Qui je suis</h2>
           <p class="lead">J'aime comprendre un système avant d'y toucher, construire d'abord la version la plus simple qui fonctionne — puis prendre le temps de la soigner.</p>
-          <p>Développeur full-stack en alternance BTS SIO (option SLAM) à Paris. Je construis avec Next.js, React et Node, et j'intègre de plus en plus les agents IA et le protocole MCP dans ma façon de travailler.</p>
-          <p>Je construis <strong>REV</strong>, un lecteur de musique desktop natif, et j'ai livré précédemment un site premium pour <strong>Glow&nbsp;Up&nbsp;by&nbsp;Julie</strong>, un institut de beauté parisien, pendant mon alternance BTS&nbsp;SIO à <strong>IPSSI</strong>.</p>
+          <p>Après un Bac Pro Mécanique Générale et un an de BTS Systèmes Embarqués, je me suis réorienté vers le développement logiciel — un parcours qui m'a habitué à raisonner en systèmes avant de coder la moindre ligne.</p>
+          <p>J'ai livré une application e-commerce PHP/MySQL (<strong>eBoutique</strong>), un blog communautaire en PHP MVC maison (<strong>devmah</strong>) et un espace utilisateur Vue/Quasar en entreprise, dans le cadre de ma formation BTS&nbsp;SIO à <strong>IPSSI</strong>.</p>
 
           <h3>Parcours</h3>
           <ol class="timeline">
@@ -119,8 +132,8 @@
           <h3>Expérience professionnelle</h3>
           <ol class="timeline">
             <li><span class="timeline__period">Fév. – mai 2025</span><span>Concepteur technique — Projet Kart GARAC (pilotage, équipe, délais)</span></li>
+            <li><span class="timeline__period">Juin – juil. 2025</span><span>Support & maintenance applicative — Smart Moov, télétravail (méthode agile, tickets clients Zendesk, correctifs, fonctionnalités, documentation, tests)</span></li>
             <li><span class="timeline__period">Nov. – déc. 2025</span><span>Développeur front-end — Mission IPSSI (HTML/CSS responsive, Git en équipe)</span></li>
-            <li><span class="timeline__period">2025</span><span>Développeur full-stack freelance — site vitrine premium (Next.js, Three.js, GSAP)</span></li>
           </ol>
         </div>
       </div>
@@ -130,64 +143,148 @@
     <section id="skills" class="skills">
       <div class="container">
         <h2 class="eyebrow">Compétences</h2>
-        <ul class="skills__grid">
-          <li class="skill-card">
-            <div class="skill-card__head">
-              <h3>React&nbsp;/ Next.js</h3>
-              <span class="skill-dots" data-level="3" aria-hidden="true"></span>
+        <div class="skills__layout">
+          <ul class="skills__tabs" role="tablist" aria-label="Choisir une compétence" aria-orientation="vertical">
+            <li role="presentation">
+              <button type="button" class="skills__tab" role="tab" id="skill-tab-react" aria-controls="skill-react" aria-selected="true">React&nbsp;/ Next.js</button>
+            </li>
+            <li role="presentation">
+              <button type="button" class="skills__tab" role="tab" id="skill-tab-javascript" aria-controls="skill-javascript" aria-selected="false">JavaScript</button>
+            </li>
+            <li role="presentation">
+              <button type="button" class="skills__tab" role="tab" id="skill-tab-html-css" aria-controls="skill-html-css" aria-selected="false">HTML&nbsp;/ CSS</button>
+            </li>
+            <li role="presentation">
+              <button type="button" class="skills__tab" role="tab" id="skill-tab-node" aria-controls="skill-node" aria-selected="false">Node.js</button>
+            </li>
+            <li role="presentation">
+              <button type="button" class="skills__tab" role="tab" id="skill-tab-sql" aria-controls="skill-sql" aria-selected="false">SQL</button>
+            </li>
+            <li role="presentation">
+              <button type="button" class="skills__tab" role="tab" id="skill-tab-api" aria-controls="skill-api" aria-selected="false">API REST</button>
+            </li>
+            <li role="presentation">
+              <button type="button" class="skills__tab" role="tab" id="skill-tab-python" aria-controls="skill-python" aria-selected="false">Python</button>
+            </li>
+          </ul>
+
+          <div class="skills__panels">
+          <div class="skill" id="skill-react" role="tabpanel" aria-labelledby="skill-tab-react">
+            <div class="skill__text">
+              <p class="skill__level"><span class="skill__meter" data-level="1" aria-hidden="true"></span>Basique — appris en autodidacte</p>
+              <h3 class="skill__name">React&nbsp;/ Next.js</h3>
+              <p class="skill__tools">React 19, Next.js 16 App Router, SSR, Server Components, Framer Motion, GSAP.</p>
             </div>
-            <p class="skill-card__level">Expert</p>
-            <p>React 19, Next.js 16 App Router, SSR, Server Components, Framer Motion, GSAP.</p>
-          </li>
-          <li class="skill-card">
-            <div class="skill-card__head">
-              <h3>JavaScript</h3>
-              <span class="skill-dots" data-level="3" aria-hidden="true"></span>
+            <figure class="skill__code">
+              <figcaption>Compteur.jsx</figcaption>
+              <pre><code>function Compteur() {
+  const [total, setTotal] = useState(0);
+  return (
+    &lt;button onClick={() =&gt; setTotal(total + 1)}&gt;
+      {total} clics
+    &lt;/button&gt;
+  );
+}</code></pre>
+            </figure>
+          </div>
+          <div class="skill" id="skill-javascript" role="tabpanel" aria-labelledby="skill-tab-javascript">
+            <div class="skill__text">
+              <p class="skill__level"><span class="skill__meter" data-level="3" aria-hidden="true"></span>Expert — depuis 2022</p>
+              <h3 class="skill__name">JavaScript</h3>
+              <p class="skill__tools">ES2024, DOM, Web APIs, Canvas, Web Audio.</p>
             </div>
-            <p class="skill-card__level">Expert — depuis 2022</p>
-            <p>ES2024, DOM, Web APIs, Canvas, Web Audio.</p>
-          </li>
-          <li class="skill-card">
-            <div class="skill-card__head">
-              <h3>HTML&nbsp;/ CSS</h3>
-              <span class="skill-dots" data-level="2" aria-hidden="true"></span>
+            <figure class="skill__code">
+              <figcaption>main.js</figcaption>
+              <pre><code>const liens = document.querySelectorAll("nav a");
+
+liens.forEach((lien) =&gt; {
+  lien.addEventListener("click", () =&gt; {
+    menu.classList.remove("is-open");
+  });
+});</code></pre>
+            </figure>
+          </div>
+          <div class="skill" id="skill-html-css" role="tabpanel" aria-labelledby="skill-tab-html-css">
+            <div class="skill__text">
+              <p class="skill__level"><span class="skill__meter" data-level="2" aria-hidden="true"></span>Confirmé</p>
+              <h3 class="skill__name">HTML&nbsp;/ CSS</h3>
+              <p class="skill__tools">Tailwind CSS, SCSS, Flexbox, Grid, animations natives, responsive design.</p>
             </div>
-            <p class="skill-card__level">Confirmé</p>
-            <p>Tailwind CSS, SCSS, Flexbox, Grid, animations natives, responsive design.</p>
-          </li>
-          <li class="skill-card">
-            <div class="skill-card__head">
-              <h3>Node.js</h3>
-              <span class="skill-dots" data-level="2" aria-hidden="true"></span>
+            <figure class="skill__code">
+              <figcaption>grille.css</figcaption>
+              <pre><code>.grille {
+  display: grid;
+  grid-template-columns:
+    repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+}</code></pre>
+            </figure>
+          </div>
+          <div class="skill" id="skill-node" role="tabpanel" aria-labelledby="skill-tab-node">
+            <div class="skill__text">
+              <p class="skill__level"><span class="skill__meter" data-level="1" aria-hidden="true"></span>Basique — appris en autodidacte</p>
+              <h3 class="skill__name">Node.js</h3>
+              <p class="skill__tools">Express, REST, WebSockets, JSON.</p>
             </div>
-            <p class="skill-card__level">Confirmé — depuis 2023</p>
-            <p>Express, REST, WebSockets, JSON.</p>
-          </li>
-          <li class="skill-card">
-            <div class="skill-card__head">
-              <h3>SQL</h3>
-              <span class="skill-dots" data-level="2" aria-hidden="true"></span>
+            <figure class="skill__code">
+              <figcaption>serveur.js</figcaption>
+              <pre><code>const app = express();
+
+app.get("/api/articles", async (req, res) =&gt; {
+  const articles = await Article.findAll();
+  res.json(articles);
+});
+
+app.listen(3000);</code></pre>
+            </figure>
+          </div>
+          <div class="skill" id="skill-sql" role="tabpanel" aria-labelledby="skill-tab-sql">
+            <div class="skill__text">
+              <p class="skill__level"><span class="skill__meter" data-level="2" aria-hidden="true"></span>Confirmé</p>
+              <h3 class="skill__name">SQL</h3>
+              <p class="skill__tools">MySQL, PostgreSQL, SQLite — modélisation, requêtes, jointures, index.</p>
             </div>
-            <p class="skill-card__level">Confirmé</p>
-            <p>MySQL, PostgreSQL, SQLite — modélisation, requêtes, jointures, index.</p>
-          </li>
-          <li class="skill-card">
-            <div class="skill-card__head">
-              <h3>API REST</h3>
-              <span class="skill-dots" data-level="2" aria-hidden="true"></span>
+            <figure class="skill__code">
+              <figcaption>requete.sql</figcaption>
+              <pre><code>SELECT p.titre, COUNT(l.id) AS likes
+FROM posts p
+LEFT JOIN likes l ON l.post_id = p.id
+GROUP BY p.id
+ORDER BY likes DESC
+LIMIT 10;</code></pre>
+            </figure>
+          </div>
+          <div class="skill" id="skill-api" role="tabpanel" aria-labelledby="skill-tab-api">
+            <div class="skill__text">
+              <p class="skill__level"><span class="skill__meter" data-level="2" aria-hidden="true"></span>Confirmé</p>
+              <h3 class="skill__name">API REST</h3>
+              <p class="skill__tools">JSON, authentification JWT, Swagger, Postman, Insomnia, OpenAPI.</p>
             </div>
-            <p class="skill-card__level">Confirmé</p>
-            <p>JSON, authentification JWT, Swagger, Postman, Insomnia, OpenAPI.</p>
-          </li>
-          <li class="skill-card">
-            <div class="skill-card__head">
-              <h3>Python</h3>
-              <span class="skill-dots" data-level="1" aria-hidden="true"></span>
+            <figure class="skill__code">
+              <figcaption>requete.http</figcaption>
+              <pre><code>GET /api/articles?page=2 HTTP/1.1
+Host: api.exemple.fr
+Authorization: Bearer &lt;jeton JWT&gt;
+Accept: application/json</code></pre>
+            </figure>
+          </div>
+          <div class="skill" id="skill-python" role="tabpanel" aria-labelledby="skill-tab-python">
+            <div class="skill__text">
+              <p class="skill__level"><span class="skill__meter" data-level="1" aria-hidden="true"></span>Intermédiaire</p>
+              <h3 class="skill__name">Python</h3>
+              <p class="skill__tools">Automatisation, scripting, intégration LLM — n8n, API Claude.</p>
             </div>
-            <p class="skill-card__level">Intermédiaire</p>
-            <p>Automatisation, scripting, intégration LLM — n8n, API Claude.</p>
-          </li>
-        </ul>
+            <figure class="skill__code">
+              <figcaption>script.py</figcaption>
+              <pre><code>import requests
+
+reponse = requests.get(URL, timeout=10)
+for article in reponse.json():
+    print(article["titre"])</code></pre>
+            </figure>
+          </div>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -195,181 +292,196 @@
     <div id="statement" class="statement">
       <div class="container">
         <p class="statement__quote">Full-stack aujourd'hui, de plus en plus agentique demain — j'aime construire des choses qui tiennent la route en usage réel, et apprendre comment les outils IA changent notre façon de les construire.</p>
-        <p class="statement__body">Je suis actuellement en alternance BTS SIO (SLAM) à Paris, entre les cours et de vrais projets de production — un scanner de sécurité forensique en C#, une plateforme de blog PHP/MySQL, une app musicale desktop en Electron, et un site vitrine premium construit avec Next.js, Three.js et GSAP. En parallèle, je suis de près comment les agents IA et des protocoles comme MCP transforment le développement full-stack, et j'intègre ça dans ma façon de construire.</p>
+        <p class="statement__body">Je suis actuellement en alternance BTS SIO (SLAM) à Paris, entre les cours et des projets concrets — une application e-commerce en PHP/MySQL, un blog communautaire en architecture MVC maison, et un espace utilisateur Vue.js/Quasar livré en entreprise. En parallèle, je suis de près comment les agents IA et des protocoles comme MCP transforment le développement full-stack, et j'intègre ça dans ma façon de construire.</p>
       </div>
     </div>
 
     <!-- ===== RÉALISATIONS ===== -->
-    <section id="work" class="work">
-      <h2 class="sr-only">Réalisations</h2>
-      <div class="work__divider" aria-hidden="true"></div>
+    <section id="work" class="work" aria-labelledby="work-title">
+      <h2 id="work-title" class="sr-only">Réalisations</h2>
 
-      <div class="work__track">
+      <article class="flow flow--eboutique" aria-labelledby="work-eboutique">
+        <div class="flow__inner">
+          <p class="flow__kicker">01 — Formation IPSSI — 2024</p>
+          <hr class="flow__rule">
+          <div>
+            <h3 class="flow__title" id="work-eboutique">eBoutique</h3>
+            <p class="flow__subtitle">Application e-commerce PHP MVC</p>
+          </div>
+          <hr class="flow__rule">
+          <div class="flow__body">
+            <p class="flow__lead">Application e-commerce développée en PHP avec architecture MVC : catalogue, inscription/connexion, gestion des rôles, upload d'images, panier en session, validation des commandes et profil utilisateur.</p>
+            <img class="flow__shot" src="assets/images/work/eboutique.jpg" alt="Capture de la démo vidéo de l'application e-commerce eBoutique" width="640" height="360" loading="lazy">
+          </div>
+          <hr class="flow__rule">
+          <dl class="flow__cols">
+            <div>
+              <dt>Mon rôle</dt>
+              <dd>développeur — projet de formation IPSSI.</dd>
+            </div>
+            <div>
+              <dt>Technologies</dt>
+              <dd>
+                <ul class="flow__tags">
+                  <li>PHP (MVC)</li>
+                  <li>MySQL (PDO)</li>
+                  <li>HTML5</li>
+                  <li>CSS3</li>
+                  <li>JavaScript</li>
+                </ul>
+              </dd>
+            </div>
+            <div>
+              <dt>Ce que j'en retiens</dt>
+              <dd>ma première architecture MVC de bout en bout — comprendre pourquoi séparer modèle/vue/contrôleur évite le code spaghetti dès qu'un projet dépasse quelques pages.</dd>
+            </div>
+          </dl>
+          <ul class="flow__links">
+            <li><a href="https://app-e5304a16-a642-44a3-b39f-8b93ef741101.cleverapps.io/" target="_blank" rel="noopener noreferrer">Voir le site ↗</a></li>
+            <li><a href="https://github.com/egomania1/tp-eboutique" target="_blank" rel="noopener noreferrer">Voir le code ↗</a></li>
+            <li><a href="https://www.youtube.com/watch?v=59ojEeLju3Y" target="_blank" rel="noopener noreferrer">Voir la démo ↗</a></li>
+          </ul>
+        </div>
+      </article>
 
-        <article class="project-card">
-          <div class="project-card__thumb">
-            <img src="assets/images/work/capture-a-venir.svg" alt="Capture d'écran à venir pour le site Glow Up by Julie" width="640" height="360" loading="lazy">
+      <article class="flow flow--devmah" aria-labelledby="work-devmah">
+        <div class="flow__inner">
+          <p class="flow__kicker">02 — Formation IPSSI — 2025 · 2026</p>
+          <hr class="flow__rule">
+          <div>
+            <h3 class="flow__title" id="work-devmah">devmah</h3>
+            <p class="flow__subtitle">Blog communautaire PHP MVC</p>
           </div>
-          <div class="project-card__body">
-            <p class="badge">Code — 2026</p>
-            <h3>Glow&nbsp;Up&nbsp;by&nbsp;Julie</h3>
-            <p>Site vitrine premium pour un institut de beauté parisien. Effets 3D WebGL, animations GSAP ScrollTrigger en parallax, fond animé. Interface haut de gamme avec sections services et réservation.</p>
-            <p class="project-card__role"><strong>Mon rôle :</strong> développeur full-stack freelance — conception et développement complet, du design à la mise en ligne.</p>
-            <ul class="tags">
-              <li>Next.js</li><li>Three.js</li><li>GSAP ScrollTrigger</li><li>Framer Motion</li>
-            </ul>
+          <hr class="flow__rule">
+          <div class="flow__body">
+            <p class="flow__lead">Plateforme de blog communautaire sur le développement et la cybersécurité, conçue de zéro en PHP pur (sans framework), architecture MVC maison complète. Likes en AJAX, commentaires, bookmarks, notifications, salons de discussion par technologie, panneau admin, flux RSS.</p>
+            <img class="flow__shot" src="assets/images/work/devmah.jpg" alt="Page d'accueil du blog devmah : filtres par catégorie, barre de recherche et liste d'articles avec badges de catégorie et de technologie" width="640" height="360" loading="lazy">
           </div>
-        </article>
+          <hr class="flow__rule">
+          <dl class="flow__cols">
+            <div>
+              <dt>Mon rôle</dt>
+              <dd>développeur — projet de formation IPSSI, TP Blog 1ère année (sept. 2025 → avr. 2026).</dd>
+            </div>
+            <div>
+              <dt>Technologies</dt>
+              <dd>
+                <ul class="flow__tags">
+                  <li>PHP 8</li>
+                  <li>MySQL (PDO)</li>
+                  <li>HTML5</li>
+                  <li>CSS3</li>
+                  <li>JavaScript</li>
+                </ul>
+              </dd>
+            </div>
+            <div>
+              <dt>Ce que j'en retiens</dt>
+              <dd>construire une architecture MVC sans framework oblige à comprendre chaque brique (routage, hydratation des vues, accès BDD) au lieu de la subir — ça a rendu React/Express plus lisibles ensuite.</dd>
+            </div>
+          </dl>
+          <ul class="flow__links">
+            <li><a href="https://github.com/egomania1/BLOG-DEV1" target="_blank" rel="noopener noreferrer">Voir le code ↗</a></li>
+          </ul>
+        </div>
+      </article>
 
-        <article class="project-card">
-          <div class="project-card__thumb">
-            <img src="assets/images/work/reek.jpg" alt="Capture de la démo vidéo de Reek, scanner forensique Windows en thème sombre" width="640" height="360" loading="lazy">
+      <article class="flow flow--quasar" aria-labelledby="work-quasar">
+        <div class="flow__inner">
+          <p class="flow__kicker">03 — Alternance — 2026</p>
+          <hr class="flow__rule">
+          <div>
+            <h3 class="flow__title" id="work-quasar">Quasar</h3>
+            <p class="flow__subtitle">Espace utilisateur Vue.js</p>
           </div>
-          <div class="project-card__body">
-            <p class="badge">Outil — 2025</p>
-            <h3>Reek</h3>
-            <p>Scanner forensique desktop pour Windows. Détecte les traces de cheats à travers 35 sections de vérification en s'appuyant sur les artefacts natifs de Windows (Prefetch, Amcache, Shimcache, UserAssist, processus, drivers, réseau, intégrité système…).</p>
-            <p class="project-card__role"><strong>Mon rôle :</strong> développeur — projet en milieu professionnel (alternance). Application hybride C# + interface web embarquée (WebView2), scan temps réel des processus actifs.</p>
-            <ul class="tags">
-              <li>C#</li><li>WinForms</li><li>WebView2</li><li>PowerShell</li><li>HTML/CSS/JS</li>
-            </ul>
-            <a href="https://github.com/egomania1/reek" target="_blank" rel="noopener noreferrer" class="project-card__link">Voir le code ↗</a>
-            <a href="https://www.youtube.com/watch?v=15LxpykwNKQ" target="_blank" rel="noopener noreferrer" class="project-card__link">Voir la démo ↗</a>
+          <hr class="flow__rule">
+          <div class="flow__body">
+            <p class="flow__lead">Espace utilisateur avec authentification via le framework Quasar (Vue.js) : connexion, création de compte avec indicateur de robustesse du mot de passe, mot de passe oublié, « rester connecté » et tableau de bord protégé par une garde de routage. Déployé automatiquement sur GitHub Pages à chaque push.</p>
+            <img class="flow__shot" src="assets/images/work/quasar-connexion.jpg" alt="Page de connexion de l'espace utilisateur Quasar : carte vitrée centrée avec champs identifiant et mot de passe sur un fond vert ondulé" width="640" height="360" loading="lazy">
           </div>
-        </article>
+          <hr class="flow__rule">
+          <dl class="flow__cols">
+            <div>
+              <dt>Mon rôle</dt>
+              <dd>développeur — projet en milieu professionnel (alternance).</dd>
+            </div>
+            <div>
+              <dt>Technologies</dt>
+              <dd>
+                <ul class="flow__tags">
+                  <li>Vue.js</li>
+                  <li>Quasar Framework</li>
+                  <li>Pinia</li>
+                  <li>GitHub Actions</li>
+                  <li>GitHub Pages</li>
+                </ul>
+              </dd>
+            </div>
+            <div>
+              <dt>Ce que j'en retiens</dt>
+              <dd>mon premier vrai contact avec Vue/Quasar en entreprise — découvrir un écosystème différent de React m'a montré ce qui est propre à un framework et ce qui relève des concepts front en général.</dd>
+            </div>
+          </dl>
+          <ul class="flow__links">
+            <li><a href="https://egomania1.github.io/quasar-connexion/" target="_blank" rel="noopener noreferrer">Voir le site ↗</a></li>
+            <li><a href="https://github.com/egomania1/quasar-connexion" target="_blank" rel="noopener noreferrer">Voir le code ↗</a></li>
+          </ul>
+        </div>
+      </article>
 
-        <article class="project-card">
-          <div class="project-card__thumb">
-            <img src="assets/images/work/capture-a-venir.svg" alt="Capture d'écran à venir pour l'application REV" width="640" height="360" loading="lazy">
+      <article class="flow flow--reiim" aria-labelledby="work-reiim">
+        <div class="flow__inner">
+          <p class="flow__kicker">04 — Projet personnel — 2026</p>
+          <hr class="flow__rule">
+          <div>
+            <h3 class="flow__title" id="work-reiim">reiim</h3>
+            <p class="flow__subtitle">Planificateur de devoirs avec IA</p>
           </div>
-          <div class="project-card__body">
-            <p class="badge">Outil — 2025</p>
-            <h3>REV</h3>
-            <p>Application musicale desktop Windows. Lecteur audio avancé avec playlists, visualiseur temps réel et gestion complète de bibliothèque, via une interface native Electron + React.</p>
-            <p class="project-card__role"><strong>Mon rôle :</strong> développeur — projet en milieu professionnel (alternance). Lecteur audio natif, gestion de playlists, backend Express local, livraison en environnement réel.</p>
-            <ul class="tags">
-              <li>Electron</li><li>React</li><li>Node.js</li><li>Web Audio API</li>
-            </ul>
-            <a href="https://github.com/egomania1/rev-son" target="_blank" rel="noopener noreferrer" class="project-card__link">Voir le code ↗</a>
+          <hr class="flow__rule">
+          <div class="flow__body">
+            <p class="flow__lead">Application web qui aide les collégiens et lycéens à prendre de l'avance sur leurs devoirs : calendrier en glisser-déposer, puis un espace de travail par méthode (exercices pratiques assistés par IA, vidéos YouTube, cartes mentales, flashcards). Système d'amis et partage d'un devoir en temps réel.</p>
+            <img class="flow__shot" src="assets/images/work/reiim.jpg" alt="Tableau de bord de reiim : compteurs de devoirs planifiés, graphique des devoirs par semaine, répartition par matière et calendrier du mois" width="640" height="360" loading="lazy">
           </div>
-        </article>
-
-        <article class="project-card">
-          <div class="project-card__thumb">
-            <img src="assets/images/work/notail-ia.jpg" alt="Capture de la démo vidéo de Notail IA, application de prise de notes avec illustrations WebGL" width="640" height="360" loading="lazy">
-          </div>
-          <div class="project-card__body">
-            <p class="badge">Code — 2026</p>
-            <h3>Notail&nbsp;IA</h3>
-            <p>Application de prise de notes intelligente : résumés automatiques, tags, organisation intelligente, recherche sémantique, suggestions IA et illustrations WebGL.</p>
-            <p class="project-card__role"><strong>Mon rôle :</strong> projet personnel — développeur solo, de la conception à la mise en ligne.</p>
-            <ul class="tags">
-              <li>HTML5</li><li>CSS3</li><li>JavaScript (ES6+)</li><li>Three.js</li><li>WebGL</li>
-            </ul>
-            <a href="https://github.com/egomania1/notail-ia-" target="_blank" rel="noopener noreferrer" class="project-card__link">Voir le code ↗</a>
-            <a href="https://www.youtube.com/watch?v=GrnoykhUkB8" target="_blank" rel="noopener noreferrer" class="project-card__link">Voir la démo ↗</a>
-          </div>
-        </article>
-
-        <article class="project-card">
-          <div class="project-card__thumb">
-            <img src="assets/images/work/novail-ia.jpg" alt="Capture de la démo vidéo de Novail IA, solution de cybersécurité pour entreprises" width="640" height="360" loading="lazy">
-          </div>
-          <div class="project-card__body">
-            <p class="badge">Code — 2026</p>
-            <h3>Novail&nbsp;IA</h3>
-            <p>Solution de cybersécurité conçue pour aider les entreprises à protéger leurs données sensibles sans complexité : surveillance automatisée, identification des données sensibles et protection en temps réel.</p>
-            <p class="project-card__role"><strong>Mon rôle :</strong> projet personnel — développeur solo, de la conception à la mise en ligne.</p>
-            <ul class="tags">
-              <li>HTML5</li><li>CSS3</li><li>JavaScript (ES6+)</li><li>Three.js</li><li>WebGL / OGL</li><li>Framer Motion</li>
-            </ul>
-            <a href="https://github.com/egomania1/Novail-ia-" target="_blank" rel="noopener noreferrer" class="project-card__link">Voir le code ↗</a>
-            <a href="https://www.youtube.com/watch?v=z0IItK8lJKY" target="_blank" rel="noopener noreferrer" class="project-card__link">Voir la démo ↗</a>
-          </div>
-        </article>
-
-        <article class="project-card">
-          <div class="project-card__thumb">
-            <img src="assets/images/work/eboutique.jpg" alt="Capture de la démo vidéo de l'application e-commerce eBoutique" width="640" height="360" loading="lazy">
-          </div>
-          <div class="project-card__body">
-            <p class="badge">Code — 2024</p>
-            <h3>eBoutique</h3>
-            <p>Application e-commerce développée en PHP avec architecture MVC : catalogue, inscription/connexion, gestion des rôles, upload d'images, panier en session, validation des commandes et profil utilisateur.</p>
-            <p class="project-card__role"><strong>Mon rôle :</strong> développeur — projet de formation IPSSI.</p>
-            <ul class="tags">
-              <li>PHP (MVC)</li><li>MySQL (PDO)</li><li>HTML5</li><li>CSS3</li><li>JavaScript</li>
-            </ul>
-            <a href="https://github.com/egomania1/tp-eboutique" target="_blank" rel="noopener noreferrer" class="project-card__link">Voir le code ↗</a>
-            <a href="https://www.youtube.com/watch?v=59ojEeLju3Y" target="_blank" rel="noopener noreferrer" class="project-card__link">Voir la démo ↗</a>
-          </div>
-        </article>
-
-        <article class="project-card">
-          <div class="project-card__thumb">
-            <img src="assets/images/work/capture-a-venir.svg" alt="Capture d'écran à venir pour le blog communautaire PHP MVC" width="640" height="360" loading="lazy">
-          </div>
-          <div class="project-card__body">
-            <p class="badge">Code — 2026</p>
-            <h3>devmah — Blog communautaire PHP&nbsp;MVC</h3>
-            <p>Plateforme de blog communautaire sur le développement et la cybersécurité, conçue de zéro en PHP pur (sans framework), architecture MVC maison complète. Likes en AJAX, commentaires, bookmarks, notifications, salons de discussion par technologie, panneau admin, flux RSS.</p>
-            <p class="project-card__role"><strong>Mon rôle :</strong> développeur — projet de formation IPSSI, TP Blog 1ère année (sept. 2025 → avr. 2026).</p>
-            <ul class="tags">
-              <li>PHP 8</li><li>MySQL (PDO)</li><li>HTML5</li><li>CSS3</li><li>JavaScript</li>
-            </ul>
-            <a href="https://github.com/egomania1/BLOG-DEV1" target="_blank" rel="noopener noreferrer" class="project-card__link">Voir le code ↗</a>
-          </div>
-        </article>
-
-        <article class="project-card">
-          <div class="project-card__thumb">
-            <img src="assets/images/work/arbadon.jpg" alt="Capture de la démo vidéo d'Arbadon, plateforme de reforestation digitale" width="640" height="360" loading="lazy">
-          </div>
-          <div class="project-card__body">
-            <p class="badge">Code — 2025</p>
-            <h3>Arbadon</h3>
-            <p>Plateforme de reforestation digitale : financer la plantation d'arbres à travers une expérience immersive. Page d'accueil avec vidéo de fond, compteurs de statistiques animés, formulaires de don, effet glassmorphism, 100&nbsp;% responsive.</p>
-            <p class="project-card__role"><strong>Mon rôle :</strong> développeur — projet de formation IPSSI, travail en équipe (Git : branches, merge, livraison).</p>
-            <ul class="tags">
-              <li>HTML5</li><li>Tailwind CSS</li><li>CSS3</li><li>JavaScript (ES6+)</li>
-            </ul>
-            <a href="https://github.com/egomania1/Arbadon" target="_blank" rel="noopener noreferrer" class="project-card__link">Voir le code ↗</a>
-            <a href="https://youtu.be/qdrY_C19Xkk" target="_blank" rel="noopener noreferrer" class="project-card__link">Voir la démo ↗</a>
-          </div>
-        </article>
-
-        <article class="project-card">
-          <div class="project-card__thumb">
-            <img src="assets/images/work/capture-a-venir.svg" alt="Capture d'écran à venir pour l'espace utilisateur Quasar" width="640" height="360" loading="lazy">
-          </div>
-          <div class="project-card__body">
-            <p class="badge">Code — 2026</p>
-            <h3>Espace utilisateur Quasar</h3>
-            <p>Espace utilisateur avec authentification via le framework Quasar (Vue.js). Interface de connexion et espace membre déployés sur GitHub Pages, composants réutilisables.</p>
-            <p class="project-card__role"><strong>Mon rôle :</strong> développeur — projet en milieu professionnel (alternance).</p>
-            <ul class="tags">
-              <li>Vue.js</li><li>Quasar Framework</li><li>GitHub Pages</li>
-            </ul>
-            <a href="https://github.com/egomania1/quasar-connexion" target="_blank" rel="noopener noreferrer" class="project-card__link">Voir le code ↗</a>
-          </div>
-        </article>
-
-      </div>
-
-      <div class="work__pagination">
-        <ol class="work__dots" id="workDots"></ol>
-        <span class="work__counter" id="workCounter">01 / 09</span>
-      </div>
+          <hr class="flow__rule">
+          <dl class="flow__cols">
+            <div>
+              <dt>Mon rôle</dt>
+              <dd>développeur — projet personnel, conçu et développé seul (front, base de données, déploiement).</dd>
+            </div>
+            <div>
+              <dt>Technologies</dt>
+              <dd>
+                <ul class="flow__tags">
+                  <li>React</li>
+                  <li>TypeScript</li>
+                  <li>Tailwind CSS</li>
+                  <li>Supabase (PostgreSQL)</li>
+                  <li>API Claude</li>
+                  <li>Vercel</li>
+                </ul>
+              </dd>
+            </div>
+            <div>
+              <dt>Ce que j'en retiens</dt>
+              <dd>intégrer une IA proprement, c'est surtout de l'architecture — la clé d'API reste côté serveur derrière une Edge Function, et chaque table est protégée par des règles de sécurité au niveau des lignes (RLS) plutôt que par le front.</dd>
+            </div>
+          </dl>
+          <ul class="flow__links">
+            <li><a href="https://reiim.vercel.app/" target="_blank" rel="noopener noreferrer">Voir le site ↗</a></li>
+            <li><a href="https://github.com/egomania1/reiim" target="_blank" rel="noopener noreferrer">Voir le code ↗</a></li>
+          </ul>
+        </div>
+      </article>
     </section>
 
     <!-- ===== COMPÉTENCES BTS SIO — FICHE DE SYNTHÈSE ===== -->
     <section id="competences-bts" class="conformite">
-      <div class="container">
+      <div class="container container--full">
         <h2>Compétences BTS SIO — Bloc 1</h2>
         <p class="section-intro">
           Luye Kelian — IPSSI Paris (alternance) — BTS SIO option SLAM — Session 2026.
-          Les 6 compétences du référentiel sont couvertes par les réalisations ci-dessous, réparties entre
-          formation à l'IPSSI et milieu professionnel en alternance.
+          Les 6 compétences du référentiel Bloc 1 sont couvertes par les réalisations ci-dessous, réparties entre
+          formation à l'IPSSI, milieu professionnel en alternance et projet personnel.
         </p>
 
         <h3>Répartition par compétence</h3>
@@ -384,69 +496,169 @@
               </tr>
             </thead>
             <tbody>
-              <tr><th scope="row">C</th><td>Gérer le patrimoine informatique</td><td>3</td></tr>
-              <tr><th scope="row">D</th><td>Répondre aux incidents et aux demandes d'assistance</td><td>0</td></tr>
-              <tr><th scope="row">E</th><td>Développer la présence en ligne de l'organisation</td><td>3</td></tr>
-              <tr><th scope="row">F</th><td>Travailler en mode projet</td><td>5</td></tr>
-              <tr><th scope="row">G</th><td>Mettre à disposition des utilisateurs un service informatique</td><td>4</td></tr>
-              <tr><th scope="row">H</th><td>Organiser son développement professionnel</td><td>3</td></tr>
+              <tr><th scope="row">B1.1</th><td>Gérer le patrimoine informatique</td><td>2</td></tr>
+              <tr><th scope="row">B1.2</th><td>Répondre aux incidents et aux demandes d'assistance</td><td>1</td></tr>
+              <tr><th scope="row">B1.3</th><td>Développer la présence en ligne de l'organisation</td><td>4</td></tr>
+              <tr><th scope="row">B1.4</th><td>Travailler en mode projet</td><td>4</td></tr>
+              <tr><th scope="row">B1.5</th><td>Mettre à disposition des utilisateurs un service informatique</td><td>5</td></tr>
+              <tr><th scope="row">B1.6</th><td>Organiser son développement professionnel</td><td>2</td></tr>
             </tbody>
           </table>
         </div>
 
         <h3>Détail par réalisation</h3>
-        <div class="conformite__grid">
-
-          <article class="conformite-card">
-            <h4>Arbadon — reforestation / don écologique</h4>
-            <p class="conformite-card__context">Formation IPSSI — sept. 2025 → avr. 2026</p>
-            <p><strong>Objectif :</strong> concevoir un site vitrine dédié à une association de reforestation avec système de don en ligne.</p>
-            <p><strong>Résultat :</strong> interface responsive livrée et présentée au client. Gestion de version en équipe via Git : branches, merge, livraison.</p>
-            <ul class="tags">
-              <li>E — Présence en ligne</li><li>F — Mode projet</li><li>G — Service informatique</li><li>H — Développement pro.</li>
-            </ul>
-          </article>
-
-          <article class="conformite-card">
-            <h4>devmah — blog communautaire PHP MVC</h4>
-            <p class="conformite-card__context">Formation IPSSI — sept. 2025 → avr. 2026</p>
-            <p><strong>Objectif :</strong> développer une plateforme de blog communautaire sécurisée avec architecture MVC maison.</p>
-            <p><strong>Résultat :</strong> authentification sécurisée (hachage SHA-256), CRUD articles et commentaires, environnement dockerisé.</p>
-            <ul class="tags">
-              <li>C — Patrimoine informatique</li><li>E — Présence en ligne</li><li>F — Mode projet</li><li>G — Service informatique</li>
-            </ul>
-          </article>
-
-          <article class="conformite-card">
-            <h4>Application desktop musicale — REV</h4>
-            <p class="conformite-card__context">Milieu professionnel — alternance — avr. → juin 2026</p>
-            <p><strong>Objectif :</strong> créer une application desktop de lecture musicale avec gestion complète de bibliothèque audio.</p>
-            <p><strong>Résultat :</strong> lecteur audio natif, playlists, interface React moderne, backend Express local, livraison en environnement réel.</p>
-            <ul class="tags">
-              <li>F — Mode projet</li><li>G — Service informatique</li><li>H — Développement pro.</li>
-            </ul>
-          </article>
-
-          <article class="conformite-card">
-            <h4>Logiciel de scan et d'analyse sécurité — REEK</h4>
-            <p class="conformite-card__context">Milieu professionnel — alternance — avr. → juin 2026</p>
-            <p><strong>Objectif :</strong> développer un logiciel de scan et d'analyse de sécurité système Windows pour audit interne.</p>
-            <p><strong>Résultat :</strong> application hybride C# + interface web embarquée (WebView2), 5 pages fonctionnelles, scan temps réel des processus actifs.</p>
-            <ul class="tags">
-              <li>C — Patrimoine informatique</li><li>F — Mode projet</li><li>H — Développement pro.</li>
-            </ul>
-          </article>
-
-          <article class="conformite-card">
-            <h4>Page connexion + espace utilisateur Quasar</h4>
-            <p class="conformite-card__context">Milieu professionnel — alternance — avr. → juin 2026</p>
-            <p><strong>Objectif :</strong> développer un espace utilisateur avec authentification via le framework Quasar (Vue.js).</p>
-            <p><strong>Résultat :</strong> interface de connexion et espace membre déployé sur GitHub Pages, composants réutilisables, responsive design.</p>
-            <ul class="tags">
-              <li>C — Patrimoine informatique</li><li>E — Présence en ligne</li><li>F — Mode projet</li><li>G — Service informatique</li>
-            </ul>
-          </article>
-
+        <div class="table-wrap panel realisations-wrap">
+          <table class="realisations">
+            <caption class="sr-only">Réalisations présentées pour l'épreuve E5, avec leur période, leur objectif, leur résultat, les compétences du Bloc 1 mobilisées et les liens vers les preuves</caption>
+            <thead>
+              <tr>
+                <th scope="col">Réf.</th>
+                <th scope="col">Réalisation</th>
+                <th scope="col">Période</th>
+                <th scope="col">Objectif &amp; résultat</th>
+                <th scope="col">Compétences</th>
+                <th scope="col">Preuves</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="realisations__ref">REA-01</td>
+                <th scope="row">
+                  <div class="realisation">
+                    <span class="realisation__avatar"><img src="assets/images/work/eboutique.jpg" alt="" width="48" height="48" loading="lazy"></span>
+                    <span class="realisation__name">eBoutique<span>Application e-commerce · Formation IPSSI</span></span>
+                  </div>
+                </th>
+                <td class="realisations__period">2024</td>
+                <td class="realisations__detail">
+                  <p><strong>Objectif :</strong> développer une application e-commerce complète (catalogue, panier, comptes utilisateurs) en PHP avec une architecture MVC maison.</p>
+                  <p><strong>Résultat :</strong> catalogue produits, inscription/connexion, gestion des rôles, panier en session, validation des commandes, upload d'images. Application mise en ligne sur Clever Cloud (PHP + MySQL).</p>
+                </td>
+                <td>
+                  <ul class="realisations__badges">
+                    <li><abbr title="Développer la présence en ligne de l'organisation">B1.3</abbr></li>
+                    <li><abbr title="Travailler en mode projet">B1.4</abbr></li>
+                    <li><abbr title="Mettre à disposition des utilisateurs un service informatique">B1.5</abbr></li>
+                  </ul>
+                </td>
+                <td>
+                  <ul class="realisations__links">
+                    <li><a href="https://app-e5304a16-a642-44a3-b39f-8b93ef741101.cleverapps.io/" target="_blank" rel="noopener noreferrer">Site ↗</a></li>
+                    <li><a href="https://github.com/egomania1/tp-eboutique" target="_blank" rel="noopener noreferrer">Code ↗</a></li>
+                  </ul>
+                </td>
+              </tr>
+              <tr>
+                <td class="realisations__ref">REA-02</td>
+                <th scope="row">
+                  <div class="realisation">
+                    <span class="realisation__avatar"><span aria-hidden="true">SM</span></span>
+                    <span class="realisation__name">Smart&nbsp;Moov<span>Support &amp; maintenance applicative · Alternance — télétravail</span></span>
+                  </div>
+                </th>
+                <td class="realisations__period">Juin → juil. 2025</td>
+                <td class="realisations__detail">
+                  <p><strong>Objectif :</strong> assurer le support client et la maintenance évolutive d'une application en remote, via l'outil Zendesk.</p>
+                  <p><strong>Résultat :</strong> travail en équipe en méthode agile, tickets clients traités (demandes basiques), correctifs de bugs, ajout de fonctionnalités, rédaction de documentation, tests, montée en compétence sur de nouvelles dépendances du projet.</p>
+                </td>
+                <td>
+                  <ul class="realisations__badges">
+                    <li><abbr title="Répondre aux incidents et aux demandes d'assistance">B1.2</abbr></li>
+                    <li><abbr title="Travailler en mode projet">B1.4</abbr></li>
+                    <li><abbr title="Mettre à disposition des utilisateurs un service informatique">B1.5</abbr></li>
+                    <li><abbr title="Organiser son développement professionnel">B1.6</abbr></li>
+                  </ul>
+                </td>
+                <td>
+                  <ul class="realisations__links">
+                    <li><a href="assets/documents/procedure-support-smart-moov.pdf" download>Procédure (PDF) ↓</a></li>
+                  </ul>
+                </td>
+              </tr>
+              <tr>
+                <td class="realisations__ref">REA-03</td>
+                <th scope="row">
+                  <div class="realisation">
+                    <span class="realisation__avatar"><img src="assets/images/work/devmah.jpg" alt="" width="48" height="48" loading="lazy"></span>
+                    <span class="realisation__name">devmah<span>Blog communautaire PHP MVC · Formation IPSSI</span></span>
+                  </div>
+                </th>
+                <td class="realisations__period">Sept. 2025 → avr. 2026</td>
+                <td class="realisations__detail">
+                  <p><strong>Objectif :</strong> développer une plateforme de blog communautaire sécurisée avec architecture MVC maison.</p>
+                  <p><strong>Résultat :</strong> mots de passe hachés (bcrypt) et jeton « se souvenir de moi » en SHA-256, CRUD articles et commentaires, likes en AJAX, notifications, panneau admin, flux RSS. Environnement dockerisé, mis en ligne sur Clever Cloud.</p>
+                </td>
+                <td>
+                  <ul class="realisations__badges">
+                    <li><abbr title="Gérer le patrimoine informatique">B1.1</abbr></li>
+                    <li><abbr title="Développer la présence en ligne de l'organisation">B1.3</abbr></li>
+                    <li><abbr title="Travailler en mode projet">B1.4</abbr></li>
+                    <li><abbr title="Mettre à disposition des utilisateurs un service informatique">B1.5</abbr></li>
+                  </ul>
+                </td>
+                <td>
+                  <ul class="realisations__links">
+                    <li><a href="https://github.com/egomania1/BLOG-DEV1" target="_blank" rel="noopener noreferrer">Code ↗</a></li>
+                  </ul>
+                </td>
+              </tr>
+              <tr>
+                <td class="realisations__ref">REA-04</td>
+                <th scope="row">
+                  <div class="realisation">
+                    <span class="realisation__avatar"><img src="assets/images/work/quasar-connexion.jpg" alt="" width="48" height="48" loading="lazy"></span>
+                    <span class="realisation__name">Espace Quasar<span>Connexion + espace utilisateur · Alternance</span></span>
+                  </div>
+                </th>
+                <td class="realisations__period">Avr. → juin 2026</td>
+                <td class="realisations__detail">
+                  <p><strong>Objectif :</strong> développer un espace utilisateur avec authentification via le framework Quasar (Vue.js).</p>
+                  <p><strong>Résultat :</strong> projet Quasar CLI (Vue 3, Pinia, vue-router) : connexion, création de compte, mot de passe oublié, tableau de bord protégé par une garde de routage. Déploiement automatique sur GitHub Pages via GitHub Actions, responsive.</p>
+                </td>
+                <td>
+                  <ul class="realisations__badges">
+                    <li><abbr title="Gérer le patrimoine informatique">B1.1</abbr></li>
+                    <li><abbr title="Développer la présence en ligne de l'organisation">B1.3</abbr></li>
+                    <li><abbr title="Travailler en mode projet">B1.4</abbr></li>
+                    <li><abbr title="Mettre à disposition des utilisateurs un service informatique">B1.5</abbr></li>
+                  </ul>
+                </td>
+                <td>
+                  <ul class="realisations__links">
+                    <li><a href="https://egomania1.github.io/quasar-connexion/" target="_blank" rel="noopener noreferrer">Site ↗</a></li>
+                    <li><a href="https://github.com/egomania1/quasar-connexion" target="_blank" rel="noopener noreferrer">Code ↗</a></li>
+                  </ul>
+                </td>
+              </tr>
+              <tr>
+                <td class="realisations__ref">REA-05</td>
+                <th scope="row">
+                  <div class="realisation">
+                    <span class="realisation__avatar"><img src="assets/images/work/reiim.jpg" alt="" width="48" height="48" loading="lazy"></span>
+                    <span class="realisation__name">reiim<span>Planificateur de devoirs avec IA · Projet personnel</span></span>
+                  </div>
+                </th>
+                <td class="realisations__period">Sept. 2026</td>
+                <td class="realisations__detail">
+                  <p><strong>Objectif :</strong> concevoir une application qui aide les collégiens et lycéens à planifier leurs devoirs et à les travailler avec une assistance IA.</p>
+                  <p><strong>Résultat :</strong> application React/TypeScript en ligne sur Vercel, base Supabase (PostgreSQL) protégée par RLS, appels à l'API Claude et à YouTube via des Edge Functions pour que les clés restent côté serveur, système d'amis et partage en temps réel.</p>
+                </td>
+                <td>
+                  <ul class="realisations__badges">
+                    <li><abbr title="Développer la présence en ligne de l'organisation">B1.3</abbr></li>
+                    <li><abbr title="Mettre à disposition des utilisateurs un service informatique">B1.5</abbr></li>
+                    <li><abbr title="Organiser son développement professionnel">B1.6</abbr></li>
+                  </ul>
+                </td>
+                <td>
+                  <ul class="realisations__links">
+                    <li><a href="https://reiim.vercel.app/" target="_blank" rel="noopener noreferrer">Site ↗</a></li>
+                    <li><a href="https://github.com/egomania1/reiim" target="_blank" rel="noopener noreferrer">Code ↗</a></li>
+                  </ul>
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
 
         <p class="conformite__note">
@@ -458,58 +670,134 @@
 
     <!-- ===== VEILLE TECHNOLOGIQUE ===== -->
     <section id="veille" class="veille">
-      <div class="container">
+      <div class="container container--full">
         <h2>Veille technologique</h2>
-        <h3>Les agents IA outillés et le protocole MCP</h3>
-        <p><strong>Objectif :</strong> comprendre comment intégrer des agents IA dans une application web.</p>
+        <p class="section-intro">Un sujet suivi dans la durée pour comprendre où va le développement web, et comment l'appliquer dans mes propres projets.</p>
 
-        <h4>Ce que j'en retiens</h4>
-        <ul>
-          <li>MCP standardise la connexion entre un agent IA et des outils, données ou APIs externes.</li>
-          <li>L'AI SDK TypeScript permet de construire des agents réutilisables dans Next.js et Node.js.</li>
-          <li>Les frameworks exposent de plus en plus de contexte aux assistants pour aider au débogage.</li>
-          <li>La sécurité reste centrale : validation des entrées, permissions limitées, supervision humaine.</li>
-        </ul>
-
-        <p><strong>Méthode :</strong> documentation officielle, expérimentation, projets personnels connectés à des LLMs.</p>
-
-        <h4>Sources</h4>
-        <ul class="sources">
-          <li><a href="https://modelcontextprotocol.io" target="_blank" rel="noopener noreferrer">modelcontextprotocol.io</a></li>
-          <li><a href="https://docs.anthropic.com" target="_blank" rel="noopener noreferrer">docs.anthropic.com</a></li>
-          <li><a href="https://ai-sdk.dev" target="_blank" rel="noopener noreferrer">ai-sdk.dev</a></li>
-          <li><a href="https://nextjs.org" target="_blank" rel="noopener noreferrer">nextjs.org</a></li>
-        </ul>
+        <ol class="stack">
+          <li class="stack__item">
+            <article class="stack__card">
+              <div class="stack__text">
+                <p class="stack__kicker">Sujet de veille</p>
+                <h3>Les agents IA outillés et le protocole MCP</h3>
+                <dl class="stack__meta">
+                  <div>
+                    <dt>Objectif</dt>
+                    <dd>Comprendre comment intégrer des agents IA dans une application web.</dd>
+                  </div>
+                  <div>
+                    <dt>Méthode</dt>
+                    <dd>Documentation officielle, expérimentation, projets personnels connectés à des LLMs.</dd>
+                  </div>
+                </dl>
+              </div>
+              <p class="stack__index" aria-hidden="true">MCP</p>
+            </article>
+          </li>
+          <li class="stack__item">
+            <article class="stack__card">
+              <div class="stack__text">
+                <p class="stack__kicker">Ce que j'en retiens — 01</p>
+                <h3>Un standard pour brancher l'IA</h3>
+                <p>MCP standardise la connexion entre un agent IA et des outils, données ou APIs externes.</p>
+              </div>
+              <p class="stack__index" aria-hidden="true">01</p>
+            </article>
+          </li>
+          <li class="stack__item">
+            <article class="stack__card">
+              <div class="stack__text">
+                <p class="stack__kicker">Ce que j'en retiens — 02</p>
+                <h3>Des agents réutilisables</h3>
+                <p>L'AI SDK TypeScript permet de construire des agents réutilisables dans Next.js et Node.js.</p>
+              </div>
+              <p class="stack__index" aria-hidden="true">02</p>
+            </article>
+          </li>
+          <li class="stack__item">
+            <article class="stack__card">
+              <div class="stack__text">
+                <p class="stack__kicker">Ce que j'en retiens — 03</p>
+                <h3>Le framework parle à l'assistant</h3>
+                <p>Les frameworks exposent de plus en plus de contexte aux assistants pour aider au débogage.</p>
+              </div>
+              <p class="stack__index" aria-hidden="true">03</p>
+            </article>
+          </li>
+          <li class="stack__item">
+            <article class="stack__card">
+              <div class="stack__text">
+                <p class="stack__kicker">Ce que j'en retiens — 04</p>
+                <h3>La sécurité d'abord</h3>
+                <p>La sécurité reste centrale : validation des entrées, permissions limitées, supervision humaine.</p>
+              </div>
+              <p class="stack__index" aria-hidden="true">04</p>
+            </article>
+          </li>
+          <li class="stack__item">
+            <article class="stack__card">
+              <div class="stack__text">
+                <p class="stack__kicker">Sources</p>
+                <h3>Où je me tiens à jour</h3>
+                <ul class="stack__sources">
+                  <li><a href="https://modelcontextprotocol.io" target="_blank" rel="noopener noreferrer">modelcontextprotocol.io <span>Spécification officielle du protocole MCP</span></a></li>
+                  <li><a href="https://docs.anthropic.com" target="_blank" rel="noopener noreferrer">docs.anthropic.com <span>Documentation de l'API Claude et des outils</span></a></li>
+                  <li><a href="https://ai-sdk.dev" target="_blank" rel="noopener noreferrer">ai-sdk.dev <span>AI SDK TypeScript : agents et appels d'outils</span></a></li>
+                  <li><a href="https://nextjs.org" target="_blank" rel="noopener noreferrer">nextjs.org <span>Documentation du framework Next.js</span></a></li>
+                </ul>
+              </div>
+              <p class="stack__index" aria-hidden="true">↗</p>
+            </article>
+          </li>
+        </ol>
       </div>
     </section>
 
     <!-- ===== CONTACT ===== -->
     <section id="contact" class="contact">
-      <div class="container">
-        <h2>Contact</h2>
-        <p>
-          <a href="mailto:kelian.luye@gmail.com">kelian.luye@gmail.com</a><br>
-          <a href="tel:+33651972324">06 51 97 23 24</a>
-        </p>
-        <ul class="socials">
-          <li><a href="https://github.com/egomania1" target="_blank" rel="noopener noreferrer">GitHub ↗</a></li>
-          <li><a href="https://www.linkedin.com/in/kelian-luye/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a></li>
-        </ul>
-        <a href="assets/documents/cv-kelian-luye.pdf" class="btn btn--primary" download>Télécharger mon CV (PDF)</a>
+      <div class="container container--wide">
+        <div class="panel contact__card">
+          <div class="contact__intro">
+            <h2>Contact</h2>
+            <p>Une question sur un projet, une alternance ou un stage ? Écrivez-moi ou appelez-moi, je réponds rapidement.</p>
+            <a href="assets/documents/cv-kelian-luye.pdf" class="btn btn--primary" download>Télécharger mon CV (PDF)</a>
+          </div>
+
+          <ul class="contact__list">
+            <li>
+              <a href="mailto:kelian.luye@gmail.com" class="contact__item">
+                <span class="contact__label">E-mail</span>
+                <span class="contact__value">kelian.luye@gmail.com</span>
+              </a>
+            </li>
+            <li>
+              <a href="tel:+33651972324" class="contact__item">
+                <span class="contact__label">Téléphone</span>
+                <span class="contact__value">06 51 97 23 24</span>
+              </a>
+            </li>
+            <li>
+              <a href="https://github.com/egomania1" target="_blank" rel="noopener noreferrer" class="contact__item">
+                <span class="contact__label">GitHub</span>
+                <span class="contact__value">egomania1 ↗</span>
+              </a>
+            </li>
+            <li>
+              <a href="https://www.linkedin.com/in/kelian-luye/" target="_blank" rel="noopener noreferrer" class="contact__item">
+                <span class="contact__label">LinkedIn</span>
+                <span class="contact__value">kelian-luye ↗</span>
+              </a>
+            </li>
+          </ul>
+        </div>
       </div>
     </section>
   </main>
-
-  <!-- ===== PIED DE PAGE ===== -->
-  <footer class="site-footer">
-    <div class="container">
-      <p>&copy; 2026 Kelian Luye. Site conçu et développé en HTML5, CSS3 et JavaScript.</p>
-    </div>
-  </footer>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <script src="js/main.js"></script>
   <script src="js/animations.js"></script>
+  <script src="js/grid-pulse.js"></script>
 </body>
 </html>
