@@ -1,22 +1,23 @@
 /* ==========================================================================
    Réalisations — un projet par écran, empilés au scroll
-   (chaque bloc arrive en pivotant depuis son coin bas-gauche et recouvre le
-   précédent, qui reste épinglé — voir initWorkStory dans animations.js)
+   Chaque projet reste collé (sticky) pendant que le suivant monte
+   par-dessus. main.js ajuste le "top" des projets plus hauts que l'écran.
    ========================================================================== */
 .work {
   padding: 0;
 }
 
 .flow {
-  position: relative;
-  min-height: 100vh;
-  overflow: hidden;
-  color: var(--flow-fg);
-}
-
-.work.is-stacked .flow {
   position: sticky;
-  top: var(--flow-top, 0);
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: clamp(1rem, 2vw, 1.5rem);
+  min-height: 100vh;
+  padding: clamp(5rem, 9vw, 6.5rem) 4vw 4vw;
+  background: var(--flow-bg);
+  color: var(--flow-fg);
 }
 
 .flow--eboutique {
@@ -37,18 +38,6 @@
 .flow--reiim {
   --flow-bg: #2115aa;
   --flow-fg: #ffffff;
-}
-
-.flow__inner {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  gap: clamp(1rem, 2vw, 1.5rem);
-  min-height: 100vh;
-  padding: clamp(5rem, 9vw, 6.5rem) 4vw 4vw;
-  background: var(--flow-bg);
-  transform-origin: bottom left;
-  will-change: transform;
 }
 
 .flow__kicker {

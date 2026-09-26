@@ -19,10 +19,6 @@
   font-weight: 500;
 }
 
-.statement__quote .word {
-  display: inline-block;
-}
-
 .statement__body {
   max-width: 46ch;
   margin: 2rem auto 0;

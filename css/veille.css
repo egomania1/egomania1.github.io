@@ -1,8 +1,7 @@
 /* ==========================================================================
    Veille — cartes empilées au scroll
    Chaque carte reste collée (sticky) pendant que la suivante monte
-   par-dessus, avec un léger décalage vertical par rang ; animations.js
-   réduit ensuite l'échelle des cartes recouvertes pour creuser la pile.
+   par-dessus, avec un léger décalage vertical par rang.
    ========================================================================== */
 .stack {
   margin-top: 2.5rem;
@@ -28,7 +27,6 @@
   border-radius: 20px;
   background: var(--stack-bg);
   color: var(--stack-fg);
-  transform-origin: top center;
   box-shadow: 0 -12px 40px rgba(0, 0, 0, 0.18);
 }
 

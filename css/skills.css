@@ -149,7 +149,7 @@
   border-color: var(--fg-muted);
 }
 
-.skills__tab[aria-selected="true"] {
+.skills__tab.is-active {
   background: var(--fg);
   border-color: var(--fg);
   color: var(--bg);
@@ -163,7 +163,9 @@
   display: none;
 }
 
-.skills.is-enhanced .skill.is-entering {
+/* Une animation CSS se relance à chaque fois qu'un élément caché
+   réapparaît : chaque changement d'onglet rejoue donc l'entrée. */
+.skills.is-enhanced .skill {
   animation: skill-in 0.4s ease-in-out;
 }
 
@@ -202,7 +204,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .skills.is-enhanced .skill.is-entering {
+  .skills.is-enhanced .skill {
     animation: none;
   }
 

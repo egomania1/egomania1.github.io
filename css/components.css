@@ -20,32 +20,6 @@
   color: #0a0a0a;
 }
 
-.badge {
-  display: inline-block;
-  font-family: var(--font-mono);
-  font-size: 0.7rem;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  color: var(--fg-muted);
-  margin: 0 0 0.4em;
-}
-
-.tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.4rem;
-  margin-top: 0.75rem;
-}
-
-.tags li {
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  padding: 0.3em 0.6em;
-  border: 1px solid var(--border);
-  border-radius: 999px;
-  color: var(--fg-muted);
-}
-
 .eyebrow {
   font-family: var(--font-mono);
   font-size: 0.8rem;
