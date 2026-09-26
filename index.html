@@ -151,120 +151,41 @@
           </div>
 
           <div class="skills__panels">
-          <div class="skill" id="skill-react">
-            <div class="skill__text">
+            <div class="skill" id="skill-react">
               <p class="skill__level"><span class="skill__meter" data-level="1" aria-hidden="true"></span>Basique — appris en autodidacte</p>
               <h3 class="skill__name">React&nbsp;/ Next.js</h3>
               <p class="skill__tools">React 19, Next.js 16 App Router, SSR, Server Components, Framer Motion, GSAP.</p>
             </div>
-            <figure class="skill__code">
-              <figcaption>Compteur.jsx</figcaption>
-              <pre><code>function Compteur() {
-  const [total, setTotal] = useState(0);
-  return (
-    &lt;button onClick={() =&gt; setTotal(total + 1)}&gt;
-      {total} clics
-    &lt;/button&gt;
-  );
-}</code></pre>
-            </figure>
-          </div>
-          <div class="skill" id="skill-javascript">
-            <div class="skill__text">
+            <div class="skill" id="skill-javascript">
               <p class="skill__level"><span class="skill__meter" data-level="2" aria-hidden="true"></span>Intermédiaire — depuis 2022</p>
               <h3 class="skill__name">JavaScript</h3>
               <p class="skill__tools">ES2024, DOM, Web APIs, Canvas, Web Audio.</p>
             </div>
-            <figure class="skill__code">
-              <figcaption>main.js</figcaption>
-              <pre><code>const liens = document.querySelectorAll("nav a");
-
-liens.forEach((lien) =&gt; {
-  lien.addEventListener("click", () =&gt; {
-    menu.classList.remove("is-open");
-  });
-});</code></pre>
-            </figure>
-          </div>
-          <div class="skill" id="skill-html-css">
-            <div class="skill__text">
+            <div class="skill" id="skill-html-css">
               <p class="skill__level"><span class="skill__meter" data-level="2" aria-hidden="true"></span>Confirmé</p>
               <h3 class="skill__name">HTML&nbsp;/ CSS</h3>
               <p class="skill__tools">Tailwind CSS, SCSS, Flexbox, Grid, animations natives, responsive design.</p>
             </div>
-            <figure class="skill__code">
-              <figcaption>grille.css</figcaption>
-              <pre><code>.grille {
-  display: grid;
-  grid-template-columns:
-    repeat(auto-fit, minmax(220px, 1fr));
-  gap: 1.5rem;
-}</code></pre>
-            </figure>
-          </div>
-          <div class="skill" id="skill-node">
-            <div class="skill__text">
+            <div class="skill" id="skill-node">
               <p class="skill__level"><span class="skill__meter" data-level="1" aria-hidden="true"></span>Basique — appris en autodidacte</p>
               <h3 class="skill__name">Node.js</h3>
               <p class="skill__tools">Express, REST, WebSockets, JSON.</p>
             </div>
-            <figure class="skill__code">
-              <figcaption>serveur.js</figcaption>
-              <pre><code>const app = express();
-
-app.get("/api/articles", async (req, res) =&gt; {
-  const articles = await Article.findAll();
-  res.json(articles);
-});
-
-app.listen(3000);</code></pre>
-            </figure>
-          </div>
-          <div class="skill" id="skill-sql">
-            <div class="skill__text">
+            <div class="skill" id="skill-sql">
               <p class="skill__level"><span class="skill__meter" data-level="2" aria-hidden="true"></span>Confirmé</p>
               <h3 class="skill__name">SQL</h3>
               <p class="skill__tools">MySQL, PostgreSQL, SQLite — modélisation, requêtes, jointures, index.</p>
             </div>
-            <figure class="skill__code">
-              <figcaption>requete.sql</figcaption>
-              <pre><code>SELECT p.titre, COUNT(l.id) AS likes
-FROM posts p
-LEFT JOIN likes l ON l.post_id = p.id
-GROUP BY p.id
-ORDER BY likes DESC
-LIMIT 10;</code></pre>
-            </figure>
-          </div>
-          <div class="skill" id="skill-api">
-            <div class="skill__text">
+            <div class="skill" id="skill-api">
               <p class="skill__level"><span class="skill__meter" data-level="2" aria-hidden="true"></span>Confirmé</p>
               <h3 class="skill__name">API REST</h3>
               <p class="skill__tools">JSON, authentification JWT, Swagger, Postman, Insomnia, OpenAPI.</p>
             </div>
-            <figure class="skill__code">
-              <figcaption>requete.http</figcaption>
-              <pre><code>GET /api/articles?page=2 HTTP/1.1
-Host: api.exemple.fr
-Authorization: Bearer &lt;jeton JWT&gt;
-Accept: application/json</code></pre>
-            </figure>
-          </div>
-          <div class="skill" id="skill-python">
-            <div class="skill__text">
+            <div class="skill" id="skill-python">
               <p class="skill__level"><span class="skill__meter" data-level="1" aria-hidden="true"></span>Intermédiaire</p>
               <h3 class="skill__name">Python</h3>
               <p class="skill__tools">Automatisation, scripting, intégration LLM — n8n, API Claude.</p>
             </div>
-            <figure class="skill__code">
-              <figcaption>script.py</figcaption>
-              <pre><code>import requests
-
-reponse = requests.get(URL, timeout=10)
-for article in reponse.json():
-    print(article["titre"])</code></pre>
-            </figure>
-          </div>
           </div>
         </div>
       </div>
