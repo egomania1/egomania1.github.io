@@ -595,8 +595,8 @@
             <article class="stack__card">
               <div class="stack__text">
                 <p class="stack__kicker">Ce que j'en retiens — 01</p>
-                <h3>Un standard pour brancher l'IA</h3>
-                <p>MCP standardise la connexion entre un agent IA et des outils, données ou APIs externes.</p>
+                <h3>Un agent outillé, c'est quoi ?</h3>
+                <p>Un modèle d'IA seul ne fait que répondre avec du texte. Un agent outillé peut aussi agir : il choisit un outil, l'appelle, lit le résultat, puis recommence jusqu'à ce que la tâche soit terminée.</p>
               </div>
               <p class="stack__index" aria-hidden="true">01</p>
             </article>
@@ -605,8 +605,8 @@
             <article class="stack__card">
               <div class="stack__text">
                 <p class="stack__kicker">Ce que j'en retiens — 02</p>
-                <h3>Des agents réutilisables</h3>
-                <p>L'AI SDK TypeScript permet de construire des agents réutilisables dans Next.js et Node.js.</p>
+                <h3>Un standard pour brancher l'IA</h3>
+                <p>Avant MCP, chaque outil demandait une intégration sur mesure pour chaque IA. MCP standardise cette connexion : un connecteur écrit une fois fonctionne avec toutes les IA compatibles, comme une prise USB.</p>
               </div>
               <p class="stack__index" aria-hidden="true">02</p>
             </article>
@@ -615,8 +615,8 @@
             <article class="stack__card">
               <div class="stack__text">
                 <p class="stack__kicker">Ce que j'en retiens — 03</p>
-                <h3>Le framework parle à l'assistant</h3>
-                <p>Les frameworks exposent de plus en plus de contexte aux assistants pour aider au débogage.</p>
+                <h3>Client, serveur, outils</h3>
+                <p>L'application IA est le client MCP. Elle se connecte à des serveurs MCP, un par outil (messagerie, agenda, base de données…). Chaque serveur expose des outils (des actions), des ressources (des données) et des prompts (des modèles de requêtes).</p>
               </div>
               <p class="stack__index" aria-hidden="true">03</p>
             </article>
@@ -625,10 +625,50 @@
             <article class="stack__card">
               <div class="stack__text">
                 <p class="stack__kicker">Ce que j'en retiens — 04</p>
-                <h3>La sécurité d'abord</h3>
-                <p>La sécurité reste centrale : validation des entrées, permissions limitées, supervision humaine.</p>
+                <h3>Un standard adopté</h3>
+                <p>Lancé en open source par Anthropic fin 2024, MCP a été adopté en 2025 par OpenAI, Google et Microsoft. Il devient la façon commune de connecter une IA à des outils.</p>
               </div>
               <p class="stack__index" aria-hidden="true">04</p>
+            </article>
+          </li>
+          <li class="stack__item">
+            <article class="stack__card">
+              <div class="stack__text">
+                <p class="stack__kicker">Ce que j'en retiens — 05</p>
+                <h3>En pratique</h3>
+                <p>J'utilise au quotidien Claude connecté par MCP à Gmail, Google Agenda, Google Drive et Figma : l'IA lit mes données et agit directement dans ces outils. Dans reiim, l'API Claude est appelée côté serveur pour que la clé reste protégée.</p>
+              </div>
+              <p class="stack__index" aria-hidden="true">05</p>
+            </article>
+          </li>
+          <li class="stack__item">
+            <article class="stack__card">
+              <div class="stack__text">
+                <p class="stack__kicker">Ce que j'en retiens — 06</p>
+                <h3>Des agents réutilisables</h3>
+                <p>L'AI SDK TypeScript permet de construire des agents réutilisables dans Next.js et Node.js, en leur donnant des outils à appeler.</p>
+              </div>
+              <p class="stack__index" aria-hidden="true">06</p>
+            </article>
+          </li>
+          <li class="stack__item">
+            <article class="stack__card">
+              <div class="stack__text">
+                <p class="stack__kicker">Ce que j'en retiens — 07</p>
+                <h3>Le framework parle à l'assistant</h3>
+                <p>Les frameworks exposent de plus en plus de contexte aux assistants pour aider au débogage.</p>
+              </div>
+              <p class="stack__index" aria-hidden="true">07</p>
+            </article>
+          </li>
+          <li class="stack__item">
+            <article class="stack__card">
+              <div class="stack__text">
+                <p class="stack__kicker">Ce que j'en retiens — 08</p>
+                <h3>La sécurité d'abord</h3>
+                <p>Un agent qui agit peut aussi se tromper ou être manipulé : un texte piégé peut lui donner de fausses instructions (injection de prompt). D'où des permissions limitées, la validation des entrées et une validation humaine avant les actions importantes.</p>
+              </div>
+              <p class="stack__index" aria-hidden="true">08</p>
             </article>
           </li>
           <li class="stack__item">

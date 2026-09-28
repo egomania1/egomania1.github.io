@@ -38,6 +38,10 @@
 .stack__item:nth-child(4) .stack__card { top: 2.5rem; --stack-bg: #354d44; --stack-fg: #ffffff; }
 .stack__item:nth-child(5) .stack__card { top: 4rem; --stack-bg: #efeef6; --stack-fg: #16152b; }
 .stack__item:nth-child(6) .stack__card { top: 5.5rem; --stack-bg: #2115aa; --stack-fg: #ffffff; }
+.stack__item:nth-child(7) .stack__card { top: 6.5rem; --stack-bg: #a67c00; --stack-fg: #ffffff; }
+.stack__item:nth-child(8) .stack__card { top: 7.5rem; --stack-bg: #0a0e27; --stack-fg: #ffffff; }
+.stack__item:nth-child(9) .stack__card { top: 8.5rem; --stack-bg: #6c85ff; --stack-fg: #0a0a0a; }
+.stack__item:nth-child(10) .stack__card { top: 9.5rem; --stack-bg: #f5f5f3; --stack-fg: #0a0a0a; }
 
 .stack__text {
   display: flex;
