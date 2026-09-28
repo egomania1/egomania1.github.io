@@ -111,10 +111,10 @@ function initSkills() {
 }
 
 function initWorkStack() {
-  const projects = document.querySelectorAll("#work .flow");
+  const projects = document.querySelectorAll("#work .flow, #veille .stack__item");
 
-  // Un projet plus haut que l'écran se colle par le bas (top négatif),
-  // sinon le projet suivant recouvrirait la fin de son contenu.
+  // Un projet (ou une carte de veille) plus haut que l'écran se colle par
+  // le bas (top négatif), sinon le suivant recouvrirait la fin de son contenu.
   function updateStickyTop() {
     projects.forEach((project) => {
       const overflow = window.innerHeight - project.offsetHeight;

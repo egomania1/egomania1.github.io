@@ -13,8 +13,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100vh;
-  min-height: 600px;
+  min-height: 100vh;
+  /* Réserve la place du décalage des cartes (jusqu'à 9,5rem) pour que
+     le bas d'une carte ne soit jamais recouvert par la suivante. */
+  padding: 1rem 0 11rem;
 }
 
 .stack__card {
@@ -61,7 +63,7 @@
 
 .stack__card h3 {
   margin: 0;
-  font-size: clamp(2.4rem, 6vw, 5rem);
+  font-size: clamp(2rem, 5vw, 4rem);
   line-height: 1;
   letter-spacing: -0.02em;
 }
